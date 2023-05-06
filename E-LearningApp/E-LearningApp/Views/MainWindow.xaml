@@ -3,10 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:E_LearningApp"
+        xmlns:local="clr-namespace:E_LearningApp" 
+        xmlns:ctx="clr-namespace:E_LearningApp.Settings"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="E-Learning Platform"
+        Icon ="..\Images\logo.jpg"
+        ResizeMode="NoResize"
+        Height="640" Width="1000">
+    <Window.DataContext>
+        <Binding Source="{x:Static ctx:Dependencies.MainWindowVM}" />
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>

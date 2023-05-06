@@ -185,6 +185,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Components\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -192,6 +200,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202305041947123_users.cs" />
     <Compile Include="Migrations\202305041947123_users.designer.cs">
@@ -202,6 +213,7 @@
       <DependentUpon>202305041955246_administrators.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
     <Compile Include="Models\DataAccessLayer\AdministratorsDL.cs" />
     <Compile Include="Models\DataAccessLayer\BaseDL.cs" />
     <Compile Include="Models\DataAccessLayer\UsersDL.cs" />
@@ -209,8 +221,17 @@
     <Compile Include="Models\Database\UnitOfWork.cs" />
     <Compile Include="Models\EntityLayer\Administrator.cs" />
     <Compile Include="Models\EntityLayer\BaseEntity.cs" />
+    <Compile Include="ViewModels\BaseProperty.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
     <Compile Include="Models\Enums\UserRole.cs" />
+    <Compile Include="Settings\Dependencies.cs" />
+    <Compile Include="ViewModels\Commands\RelayCommands.cs" />
+    <Compile Include="ViewModels\Commands\RelayCommandsV2.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -250,8 +271,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\BusinessLogicLayer\" />
-    <Folder Include="ViewModels\" />
+    <Content Include="Images\logo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
