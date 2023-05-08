@@ -10,12 +10,21 @@ using System.Windows.Controls;
 
 namespace E_LearningApp.ViewModels
 {
-    public class MainWindowVM
+    public class MainWindowVM : BasePropertyChanged
     {
-        public UserControl CurrentView { get; set; }
+        private UserControl _currentView;
+        public UserControl CurrentView
+        {
+            get { return _currentView; }
+            set { _currentView = value; NotifyPropertyChanged(nameof(CurrentView));}
+        }
         public MainWindowVM()
         {
             CurrentView = new LoginView();
+        }
+        public void ShowAdministratorsView(AdministratorVM administratorVM)
+        {
+            CurrentView = new AdministratorView(administratorVM);
         }
     }
 }

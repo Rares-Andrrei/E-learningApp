@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,6 +58,11 @@ namespace E_LearningApp.Models.DataAccessLayer
         protected IQueryable<T> GetRecords()
         {
             return _dbSet.AsQueryable<T>();
+        }
+
+        protected IQueryable<T> GetRecordsWhere(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
         }
     }
 }

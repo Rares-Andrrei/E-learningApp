@@ -11,9 +11,9 @@ namespace E_LearningApp.Settings
         public static MainWindowVM MainWindowVM { get; set; }
         static Dependencies() 
         {
-            MainWindowVM = new MainWindowVM();
             AppDbContext = new AppDbContext();
             UnitOfWork = new UnitOfWork(AppDbContext, new UsersDL(AppDbContext), new AdministratorsDL(AppDbContext));
+            MainWindowVM = new MainWindowVM();
         }
     }
 }

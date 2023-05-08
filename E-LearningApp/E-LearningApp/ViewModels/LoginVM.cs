@@ -1,8 +1,11 @@
 ﻿using E_LearningApp.Models.BusinessLogicLayer;
 using E_LearningApp.Models.EntityLayer;
+using E_LearningApp.Models.Enums;
+using E_LearningApp.Settings;
 using E_LearningApp.ViewModels.Commands;
 using System;
 using System.Security;
+using System.Windows;
 using System.Windows.Input;
 
 namespace E_LearningApp.ViewModels
@@ -35,7 +38,29 @@ namespace E_LearningApp.ViewModels
         }
         public void Login(object parameter)
         {
-
+            try
+            {
+                Tuple<int, UserRole> user = LoginBLL.Login(UserName, Password);
+                if (user != null) 
+                {
+                    switch (user.Item2)
+                    {
+                        case UserRole.Student:
+                            break;
+                        case UserRole.Professor:
+                            break;
+                        case UserRole.ClassMaster:
+                            break;
+                        case UserRole.Administrator:
+                            Dependencies.MainWindowVM.ShowAdministratorsView(new AdministratorVM(user.Item1));
+                            break;
+                    }
+                }
+            }
+            catch(LoginException exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
         }
         #endregion
     }

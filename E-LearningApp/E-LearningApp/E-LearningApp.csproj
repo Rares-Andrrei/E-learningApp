@@ -189,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AdministratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +208,7 @@
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoginException.cs" />
     <Compile Include="Migrations\202305041947123_users.cs" />
     <Compile Include="Migrations\202305041947123_users.designer.cs">
       <DependentUpon>202305041947123_users.cs</DependentUpon>
@@ -211,6 +216,10 @@
     <Compile Include="Migrations\202305041955246_administrators.cs" />
     <Compile Include="Migrations\202305041955246_administrators.designer.cs">
       <DependentUpon>202305041955246_administrators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305080919176_added-email.cs" />
+    <Compile Include="Migrations\202305080919176_added-email.designer.cs">
+      <DependentUpon>202305080919176_added-email.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
@@ -221,6 +230,7 @@
     <Compile Include="Models\Database\UnitOfWork.cs" />
     <Compile Include="Models\EntityLayer\Administrator.cs" />
     <Compile Include="Models\EntityLayer\BaseEntity.cs" />
+    <Compile Include="ViewModels\AdministratorVM.cs" />
     <Compile Include="ViewModels\BaseProperty.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
     <Compile Include="Models\Enums\UserRole.cs" />
@@ -229,6 +239,9 @@
     <Compile Include="ViewModels\Commands\RelayCommandsV2.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="Views\AdministratorView.xaml.cs">
+      <DependentUpon>AdministratorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -256,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305041955246_administrators.resx">
       <DependentUpon>202305041955246_administrators.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305080919176_added-email.resx">
+      <DependentUpon>202305080919176_added-email.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

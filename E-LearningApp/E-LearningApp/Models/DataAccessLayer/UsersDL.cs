@@ -15,5 +15,9 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             this.dbContext = dbContext;
         }
+        public User GetByEmail(string email)
+        {
+            return GetRecordsWhere(u => u.Email == email).FirstOrDefault();
+        }
     }
 }
