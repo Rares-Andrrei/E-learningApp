@@ -221,6 +221,14 @@
     <Compile Include="Migrations\202305080919176_added-email.designer.cs">
       <DependentUpon>202305080919176_added-email.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305082046240_school-database.cs" />
+    <Compile Include="Migrations\202305082046240_school-database.designer.cs">
+      <DependentUpon>202305082046240_school-database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305082056594_fix.cs" />
+    <Compile Include="Migrations\202305082056594_fix.designer.cs">
+      <DependentUpon>202305082056594_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
     <Compile Include="Models\DataAccessLayer\AdministratorsDL.cs" />
@@ -230,6 +238,19 @@
     <Compile Include="Models\Database\UnitOfWork.cs" />
     <Compile Include="Models\EntityLayer\Administrator.cs" />
     <Compile Include="Models\EntityLayer\BaseEntity.cs" />
+    <Compile Include="Models\EntityLayer\Class.cs" />
+    <Compile Include="Models\EntityLayer\ClassCategory.cs" />
+    <Compile Include="Models\EntityLayer\ClassCategoryThesisAssociation.cs" />
+    <Compile Include="Models\EntityLayer\Person.cs" />
+    <Compile Include="Models\EntityLayer\Professor.cs" />
+    <Compile Include="Models\EntityLayer\ProfessorSubjectAssociation.cs" />
+    <Compile Include="Models\EntityLayer\Specialization.cs" />
+    <Compile Include="Models\EntityLayer\Student.cs" />
+    <Compile Include="Models\EntityLayer\StudentAbsenceAssociation.cs" />
+    <Compile Include="Models\EntityLayer\StudentGradesAssociation.cs" />
+    <Compile Include="Models\EntityLayer\Subject.cs" />
+    <Compile Include="Models\EntityLayer\SubjectClassAssociation.cs" />
+    <Compile Include="Models\EntityLayer\YearOfStudy.cs" />
     <Compile Include="ViewModels\AdministratorVM.cs" />
     <Compile Include="ViewModels\BaseProperty.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
@@ -272,6 +293,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305080919176_added-email.resx">
       <DependentUpon>202305080919176_added-email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305082046240_school-database.resx">
+      <DependentUpon>202305082046240_school-database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305082056594_fix.resx">
+      <DependentUpon>202305082056594_fix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
