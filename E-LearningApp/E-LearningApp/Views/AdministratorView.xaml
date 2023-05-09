@@ -6,7 +6,38 @@
              xmlns:local="clr-namespace:E_LearningApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="Gray">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Height="30" FontSize="15" FontWeight="Bold">
+                <Menu.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF3A60AD" Offset="0.528"/>
+                        <GradientStop Color="#FF6A85D8" Offset="0.01"/>
+                        <GradientStop Color="#FF3464C4" Offset="1"/>
+                        <GradientStop Color="#FF202E7E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Menu.Background>
+                <MenuItem Header="Add" Margin="4">
+                    <MenuItem Header="Student"/>
+                    <Separator/>
+                    <MenuItem Header="Professor"/>
+                    <Separator/>
+                    <MenuItem Header="Class"/>
+                    <Separator/>
+                    <MenuItem Header="StudyYear/Specialization"/>
+                    <Separator/>
+                    <MenuItem Header="Subject"/>
+                </MenuItem>
+                <MenuItem Header="-">
+                </MenuItem>
+            </Menu>
+
+            <TextBlock Text="{Binding Path=Email, StringFormat='Logged in as Administrator with e-mail {0}'}" DockPanel.Dock="Bottom" Background="#FF6A85D8" TextAlignment="Center"
+                       FontSize="13" FontStyle="Italic" Margin="2"/>
+
+
+            <WrapPanel>
+            </WrapPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

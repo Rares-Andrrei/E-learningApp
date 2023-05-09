@@ -7,20 +7,17 @@ namespace E_LearningApp.Models.Database
     {
         public UsersDL Users { get; }
 
-        public AdministratorsDL Administrators { get; }
 
         private readonly AppDbContext _dbContext;
 
         public UnitOfWork
         (
             AppDbContext dbContext,
-            UsersDL users,
-            AdministratorsDL administrators
+            UsersDL users
         )
         {
             _dbContext = dbContext;
             Users = users;
-            Administrators = administrators;
         }
 
         public void SaveChanges()

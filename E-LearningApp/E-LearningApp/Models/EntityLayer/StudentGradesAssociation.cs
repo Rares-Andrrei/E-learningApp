@@ -13,6 +13,7 @@ namespace E_LearningApp.Models.EntityLayer
 
         public int Grade { get; set; }
         public int Semester { get; set; }
+        public bool Thesis { get; set; }
 
         public int Subjectid { get; set; }
         public Subject Subject { get; set; }

@@ -193,6 +193,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ClassCategoryCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,14 +233,21 @@
     <Compile Include="Migrations\202305082056594_fix.designer.cs">
       <DependentUpon>202305082056594_fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305090727206_thesisGrade.cs" />
+    <Compile Include="Migrations\202305090727206_thesisGrade.designer.cs">
+      <DependentUpon>202305090727206_thesisGrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305091206299_database-optimization.cs" />
+    <Compile Include="Migrations\202305091206299_database-optimization.designer.cs">
+      <DependentUpon>202305091206299_database-optimization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusinessLogicLayer\AdministratorBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
-    <Compile Include="Models\DataAccessLayer\AdministratorsDL.cs" />
     <Compile Include="Models\DataAccessLayer\BaseDL.cs" />
     <Compile Include="Models\DataAccessLayer\UsersDL.cs" />
     <Compile Include="Models\Database\AppDbContext.cs" />
     <Compile Include="Models\Database\UnitOfWork.cs" />
-    <Compile Include="Models\EntityLayer\Administrator.cs" />
     <Compile Include="Models\EntityLayer\BaseEntity.cs" />
     <Compile Include="Models\EntityLayer\Class.cs" />
     <Compile Include="Models\EntityLayer\ClassCategory.cs" />
@@ -262,6 +273,9 @@
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\AdministratorView.xaml.cs">
       <DependentUpon>AdministratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassCategoryCreateView.xaml.cs">
+      <DependentUpon>ClassCategoryCreateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -299,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305082056594_fix.resx">
       <DependentUpon>202305082056594_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305090727206_thesisGrade.resx">
+      <DependentUpon>202305090727206_thesisGrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305091206299_database-optimization.resx">
+      <DependentUpon>202305091206299_database-optimization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
