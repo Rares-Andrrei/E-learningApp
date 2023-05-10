@@ -18,9 +18,9 @@ namespace E_LearningApp.Views
     /// <summary>
     /// Interaction logic for ClassCategoryCreateView.xaml
     /// </summary>
-    public partial class ClassCategoryCreateView : UserControl
+    public partial class SpecializationsView : UserControl
     {
-        public ClassCategoryCreateView()
+        public SpecializationsView()
         {
             InitializeComponent();
         }

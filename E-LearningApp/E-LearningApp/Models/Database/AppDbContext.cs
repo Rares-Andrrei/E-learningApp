@@ -19,8 +19,6 @@ namespace E_LearningApp.Models.Database
 
         public DbSet<ClassCategory> ClassCategoryes { get; set; }
 
-        public DbSet<ClassCategoryThesisAssociation> ClassCategoryThesisAssociations { get; set; }
-
         public DbSet<Person> Persons { get; set; }
 
         public DbSet<Professor> Professors { get; set; }
@@ -37,8 +35,6 @@ namespace E_LearningApp.Models.Database
 
         public DbSet<Subject> Subjects { get; set; }
 
-        public DbSet<SubjectClassAssociation> SubjectClassAssociations { get; set; }
-
-        public DbSet<YearOfStudy> YearsOfStudy { get; set; }
+        public DbSet<SubjectClassCategoryAssociation> SubjectClassAssociations { get; set; }
     }
 }

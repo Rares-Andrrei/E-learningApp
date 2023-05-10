@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:E_LearningApp.Views"
+             xmlns:local="clr-namespace:E_LearningApp.Views" 
+             xmlns:viewmodels="clr-namespace:E_LearningApp.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:AdministratorVM}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Gray">
@@ -24,7 +26,7 @@
                     <Separator/>
                     <MenuItem Header="Class"/>
                     <Separator/>
-                    <MenuItem Header="StudyYear/Specialization"/>
+                    <MenuItem Header="Specialization" Command="{Binding ShowAddSpecializationCommand}"/>
                     <Separator/>
                     <MenuItem Header="Subject"/>
                 </MenuItem>
@@ -35,9 +37,7 @@
             <TextBlock Text="{Binding Path=Email, StringFormat='Logged in as Administrator with e-mail {0}'}" DockPanel.Dock="Bottom" Background="#FF6A85D8" TextAlignment="Center"
                        FontSize="13" FontStyle="Italic" Margin="2"/>
 
-
-            <WrapPanel>
-            </WrapPanel>
+            <ContentControl Content="{Binding CurrentView}"/>
         </DockPanel>
     </Grid>
 </UserControl>

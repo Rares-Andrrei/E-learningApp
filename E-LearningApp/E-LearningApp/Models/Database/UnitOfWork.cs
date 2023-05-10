@@ -5,7 +5,8 @@ namespace E_LearningApp.Models.Database
 {
     public class UnitOfWork
     {
-        public UsersDL Users { get; }
+        public UsersDL Users { get; set; }
+        public SpecializationDL Specializations { get; set; }
 
 
         private readonly AppDbContext _dbContext;
@@ -13,11 +14,13 @@ namespace E_LearningApp.Models.Database
         public UnitOfWork
         (
             AppDbContext dbContext,
-            UsersDL users
+            UsersDL users,
+            SpecializationDL specializations
         )
         {
             _dbContext = dbContext;
             Users = users;
+            Specializations = specializations;
         }
 
         public void SaveChanges()

@@ -11,7 +11,6 @@ namespace E_LearningApp.Models.EntityLayer
         public int SpecializationId { get; set; }
         public Specialization Specialization { get; set; }
 
-        public int YearofStudyId { get; set; }
-        public YearOfStudy YearOfStudy { get; set; }
+        public int YearOfStudy { get; set; }
     }
 }

@@ -193,7 +193,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClassCategoryCreateView.xaml">
+    <Page Include="Views\SpecializationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,7 +212,8 @@
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginException.cs" />
+    <Compile Include="Exceptions\InputException.cs" />
+    <Compile Include="Exceptions\LoginException.cs" />
     <Compile Include="Migrations\202305041947123_users.cs" />
     <Compile Include="Migrations\202305041947123_users.designer.cs">
       <DependentUpon>202305041947123_users.cs</DependentUpon>
@@ -241,17 +242,26 @@
     <Compile Include="Migrations\202305091206299_database-optimization.designer.cs">
       <DependentUpon>202305091206299_database-optimization.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305100611299_databaseOptimization2.cs" />
+    <Compile Include="Migrations\202305100611299_databaseOptimization2.designer.cs">
+      <DependentUpon>202305100611299_databaseOptimization2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305100638399_databaseOptimization3.cs" />
+    <Compile Include="Migrations\202305100638399_databaseOptimization3.designer.cs">
+      <DependentUpon>202305100638399_databaseOptimization3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessLogicLayer\AdministratorBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SpecializationsBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
     <Compile Include="Models\DataAccessLayer\BaseDL.cs" />
+    <Compile Include="Models\DataAccessLayer\SpecializationDL.cs" />
     <Compile Include="Models\DataAccessLayer\UsersDL.cs" />
     <Compile Include="Models\Database\AppDbContext.cs" />
     <Compile Include="Models\Database\UnitOfWork.cs" />
     <Compile Include="Models\EntityLayer\BaseEntity.cs" />
     <Compile Include="Models\EntityLayer\Class.cs" />
     <Compile Include="Models\EntityLayer\ClassCategory.cs" />
-    <Compile Include="Models\EntityLayer\ClassCategoryThesisAssociation.cs" />
     <Compile Include="Models\EntityLayer\Person.cs" />
     <Compile Include="Models\EntityLayer\Professor.cs" />
     <Compile Include="Models\EntityLayer\ProfessorSubjectAssociation.cs" />
@@ -260,8 +270,7 @@
     <Compile Include="Models\EntityLayer\StudentAbsenceAssociation.cs" />
     <Compile Include="Models\EntityLayer\StudentGradesAssociation.cs" />
     <Compile Include="Models\EntityLayer\Subject.cs" />
-    <Compile Include="Models\EntityLayer\SubjectClassAssociation.cs" />
-    <Compile Include="Models\EntityLayer\YearOfStudy.cs" />
+    <Compile Include="Models\EntityLayer\SubjectClassCategoryAssociation.cs" />
     <Compile Include="ViewModels\AdministratorVM.cs" />
     <Compile Include="ViewModels\BaseProperty.cs" />
     <Compile Include="Models\EntityLayer\User.cs" />
@@ -269,13 +278,14 @@
     <Compile Include="Settings\Dependencies.cs" />
     <Compile Include="ViewModels\Commands\RelayCommands.cs" />
     <Compile Include="ViewModels\Commands\RelayCommandsV2.cs" />
+    <Compile Include="ViewModels\SpecializationsVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\AdministratorView.xaml.cs">
       <DependentUpon>AdministratorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClassCategoryCreateView.xaml.cs">
-      <DependentUpon>ClassCategoryCreateView.xaml</DependentUpon>
+    <Compile Include="Views\SpecializationsView.xaml.cs">
+      <DependentUpon>SpecializationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -319,6 +329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305091206299_database-optimization.resx">
       <DependentUpon>202305091206299_database-optimization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305100611299_databaseOptimization2.resx">
+      <DependentUpon>202305100611299_databaseOptimization2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305100638399_databaseOptimization3.resx">
+      <DependentUpon>202305100638399_databaseOptimization3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
