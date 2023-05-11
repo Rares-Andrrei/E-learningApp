@@ -32,23 +32,43 @@ namespace E_LearningApp.Models.BusinessLogicLayer
 
             return UnitOfWork.Specializations.GetBySpecializationName(specializationName);
         }
-        public void AddSpecialization(string specialization)
+
+        public bool AlreadyExists(string specializationName)
         {
-            if (specialization == null || specialization.Trim() == string.Empty)
+            if (specializationName != null)
+            {
+                return UnitOfWork.Specializations.AlreadyExists(specializationName);
+            }
+            return false;
+        }
+
+        public void AddSpecialization(string specializationName)
+        {
+            if (specializationName == null || specializationName.Trim() == string.Empty)
             {
                 throw new InputException("Incorrect input");
             }
-            if (UnitOfWork.Specializations.Any(s => s.Name == specialization))
+            if (AlreadyExists(specializationName))
             {
                 throw new InputException("This specialization already exists");
             }
-            UnitOfWork.Specializations.Insert(new Specialization { Name = specialization });
+            UnitOfWork.Specializations.Insert(new Specialization { Name = specializationName });
             UnitOfWork.SaveChanges();
         }
         public void DeleteSpecialization(Specialization specialization)
         {
             UnitOfWork.Specializations.Remove(specialization);
             UnitOfWork.SaveChanges();
+        }
+
+        public bool UpdateSpecialization(Specialization specialization)
+        {
+            if (specialization == null || UnitOfWork.Specializations.AlreadyExists(specialization.Name))
+            {
+                return false;
+            }
+            UnitOfWork.Specializations.UpdateSpecialization(specialization);
+            return true;
         }
     }
 }

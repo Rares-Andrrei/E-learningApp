@@ -19,5 +19,16 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             return GetRecordsWhere(s => s.Name == specializationName).FirstOrDefault();
         }
+        public bool AlreadyExists(string specializationName)
+        {
+            return Any(s => s.Name == specializationName);
+        }
+        public void UpdateSpecialization(Specialization specialization)
+        {
+            if (specialization !=null)
+            {
+                Update(specialization);
+            }
+        }
     }
 }

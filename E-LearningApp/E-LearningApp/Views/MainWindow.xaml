@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:E_LearningApp" 
         xmlns:ctx="clr-namespace:E_LearningApp.Settings"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="E-Learning Platform"
         Icon ="..\Images\logo.jpg"
         ResizeMode="NoResize"

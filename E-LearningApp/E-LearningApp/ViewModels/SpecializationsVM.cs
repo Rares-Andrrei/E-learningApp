@@ -11,7 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace E_LearningApp.ViewModels
 {
@@ -113,27 +115,45 @@ namespace E_LearningApp.ViewModels
             }
         }
 
-        private ICommand _onCellEditEndingCommand;
-        public ICommand OnCellEditEndingCommand
+
+        private ICommand _cellEditEndingCommand;
+        public ICommand CellEditEndingCommand
         {
             get
             {
-                if (_onCellEditEndingCommand == null)
+                if (_cellEditEndingCommand == null)
                 {
-                    _onCellEditEndingCommand = new RelayCommandsV2(DeleteSpecialization);
+                    _cellEditEndingCommand = new RelayCommandsV2(CellEditEnding);
                 }
-                return _onCellEditEndingCommand;
-            }
-        }
-        public void OnCellEditEnding(object parameter)
-        {
-            if (SelectedItem != null)
-            {
-                SpecializationsBLL.DeleteSpecialization(SelectedItem);
-                UpdateSpecilaizationsList();
+                return _cellEditEndingCommand;
             }
         }
 
+        public void CellEditEnding(object parameter)
+        {
+            if (parameter is DataGridCellEditEndingEventArgs e)
+            {
+                var cell = e.EditingElement as TextBox;
+                var binding = cell?.GetBindingExpression(TextBox.TextProperty);
+
+                if (binding != null)
+                {
+                    if (cell.Text == SelectedItem.Name || SpecializationsBLL.AlreadyExists(cell.Text))
+                    {
+                        cell.Text = SelectedItem.Name;
+                    }
+                    else
+                    {
+                        Specialization editedSpecialzation = new Specialization
+                        {
+                            Id = SelectedItem.Id,
+                            Name = cell.Text
+                        };
+                        SpecializationsBLL.UpdateSpecialization(editedSpecialzation);
+                    }
+                }
+            }
+        }
         #endregion 
     }
 }
