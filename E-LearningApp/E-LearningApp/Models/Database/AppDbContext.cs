@@ -17,8 +17,6 @@ namespace E_LearningApp.Models.Database
 
         public DbSet<Class> Classes { get; set; }
 
-        public DbSet<ClassCategory> ClassCategoryes { get; set; }
-
         public DbSet<Person> Persons { get; set; }
 
         public DbSet<Professor> Professors { get; set; }

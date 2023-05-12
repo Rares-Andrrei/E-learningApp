@@ -7,6 +7,8 @@ namespace E_LearningApp.Models.Database
     {
         public UsersDL Users { get; set; }
         public SpecializationDL Specializations { get; set; }
+        public ProfessorsDL Professors { get; set; }
+        public ClassesDL Classes { get; set; }
 
 
         private readonly AppDbContext _dbContext;
@@ -15,12 +17,17 @@ namespace E_LearningApp.Models.Database
         (
             AppDbContext dbContext,
             UsersDL users,
-            SpecializationDL specializations
+            SpecializationDL specializations,
+            ProfessorsDL professors,
+            ClassesDL classes
+
         )
         {
             _dbContext = dbContext;
             Users = users;
             Specializations = specializations;
+            Professors = professors;
+            Classes = classes;
         }
 
         public void SaveChanges()

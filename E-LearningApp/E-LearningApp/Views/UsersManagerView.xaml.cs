@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace E_LearningApp.Views
 {
     /// <summary>
-    /// Interaction logic for ClassCategoryCreateView.xaml
+    /// Interaction logic for UsersView.xaml
     /// </summary>
-    public partial class SpecializationsView : UserControl
+    public partial class UsersManagerView : UserControl
     {
-        public SpecializationsView()
+        public UsersManagerView()
         {
             InitializeComponent();
         }

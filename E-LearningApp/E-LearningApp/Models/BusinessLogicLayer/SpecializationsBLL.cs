@@ -68,6 +68,7 @@ namespace E_LearningApp.Models.BusinessLogicLayer
                 return false;
             }
             UnitOfWork.Specializations.UpdateSpecialization(specialization);
+            UnitOfWork.SaveChanges();
             return true;
         }
     }

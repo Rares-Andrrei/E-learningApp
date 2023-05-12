@@ -206,6 +206,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\202305121643248_databaseOptimization4.cs" />
+    <Compile Include="Migrations\202305121643248_databaseOptimization4.designer.cs">
+      <DependentUpon>202305121643248_databaseOptimization4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusinessLogicLayer\ClassesManagerBLL.cs" />
+    <Compile Include="Models\DataAccessLayer\ClassesDL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProfessorsDL.cs" />
+    <Compile Include="Models\Dtos\ClassDto.cs" />
+    <Compile Include="Models\Dtos\EntityFullNameIdDto.cs" />
+    <Compile Include="ViewModels\ClassesManagerVM.cs" />
+    <Compile Include="ViewModels\UsersManagerVM.cs" />
+    <Compile Include="Views\ClassesManagerView.xaml.cs">
+      <DependentUpon>ClassesManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UsersManagerView.xaml.cs">
+      <DependentUpon>UsersManagerView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Components\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,7 +231,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SpecializationsView.xaml">
+    <Page Include="Views\ClassesManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SpecializationsManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,7 +303,6 @@
     <Compile Include="Models\Database\UnitOfWork.cs" />
     <Compile Include="Models\EntityLayer\BaseEntity.cs" />
     <Compile Include="Models\EntityLayer\Class.cs" />
-    <Compile Include="Models\EntityLayer\ClassCategory.cs" />
     <Compile Include="Models\EntityLayer\Person.cs" />
     <Compile Include="Models\EntityLayer\Professor.cs" />
     <Compile Include="Models\EntityLayer\ProfessorSubjectAssociation.cs" />
@@ -305,8 +325,8 @@
     <Compile Include="Views\AdministratorView.xaml.cs">
       <DependentUpon>AdministratorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SpecializationsView.xaml.cs">
-      <DependentUpon>SpecializationsView.xaml</DependentUpon>
+    <Compile Include="Views\SpecializationsManagerView.xaml.cs">
+      <DependentUpon>SpecializationsManagerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -315,6 +335,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UsersManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -356,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305100638399_databaseOptimization3.resx">
       <DependentUpon>202305100638399_databaseOptimization3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305121643248_databaseOptimization4.resx">
+      <DependentUpon>202305121643248_databaseOptimization4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

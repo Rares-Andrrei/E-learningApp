@@ -19,7 +19,7 @@ namespace E_LearningApp.ViewModels
 {
     public class SpecializationsVM : BasePropertyChanged
     {
-        public SpecializationsBLL SpecializationsBLL { get; set; }
+        private SpecializationsBLL SpecializationsBLL { get; set; }
 
         private ObservableCollection<Specialization> _specializations;
         public ObservableCollection<Specialization> Specializations
@@ -62,7 +62,7 @@ namespace E_LearningApp.ViewModels
             SpecializationsBLL = new SpecializationsBLL();
             UpdateSpecilaizationsList();
         }
-        public void UpdateSpecilaizationsList()
+        private void UpdateSpecilaizationsList()
         {
             Specializations = new ObservableCollection<Specialization>(SpecializationsBLL.GetSpecializations());
         }

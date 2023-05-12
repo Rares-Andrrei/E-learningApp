@@ -19,16 +19,14 @@
                         <GradientStop Color="#FF202E7E" Offset="1"/>
                     </LinearGradientBrush>
                 </Menu.Background>
-                <MenuItem Header="Add" Margin="4">
-                    <MenuItem Header="Student"/>
+                <MenuItem Header="Manage" Margin="4">
+                    <MenuItem Header="Users" Command="{Binding ShowUsersManagerCommand}"/>
                     <Separator/>
-                    <MenuItem Header="Professor"/>
+                    <MenuItem Header="Classes" Command="{Binding ShowClassesManagerCommand}"/>
                     <Separator/>
-                    <MenuItem Header="Class"/>
+                    <MenuItem Header="Specializations" Command="{Binding ShowAddSpecializationCommand}"/>
                     <Separator/>
-                    <MenuItem Header="Specialization" Command="{Binding ShowAddSpecializationCommand}"/>
-                    <Separator/>
-                    <MenuItem Header="Subject"/>
+                    <MenuItem Header="Subjects"/>
                 </MenuItem>
                 <MenuItem Header="-">
                 </MenuItem>

@@ -21,7 +21,7 @@ namespace E_LearningApp.ViewModels
             AdministratorBLL = new AdministratorBLL();
         }
 
-        public AdministratorBLL AdministratorBLL { get; set; }
+        private AdministratorBLL AdministratorBLL { get; set; }
         public int AdminId { get; set; }
 
         private UserControl _currentView;
@@ -60,7 +60,41 @@ namespace E_LearningApp.ViewModels
         }
         public void ShowAddSpecialization(object parameter)
         {
-            CurrentView = new SpecializationsView();
+            CurrentView = new SpecializationsManagerView();
+        }
+
+        private ICommand _showClassesManagerCommand;
+        public ICommand ShowClassesManagerCommand
+        {
+            get
+            {
+                if (_showClassesManagerCommand == null)
+                {
+                    _showClassesManagerCommand = new RelayCommandsV2(ShowClassesManager);
+                }
+                return _showClassesManagerCommand;
+            }
+        }
+        public void ShowClassesManager(object parameter)
+        {
+            CurrentView = new ClassesManagerView();
+        }
+
+        private ICommand _showUsersManagerCommand;
+        public ICommand ShowUsersManagerCommand
+        {
+            get
+            {
+                if (_showUsersManagerCommand == null)
+                {
+                    _showUsersManagerCommand = new RelayCommandsV2(ShowUsersManager);
+                }
+                return _showUsersManagerCommand;
+            }
+        }
+        public void ShowUsersManager(object parameter)
+        {
+            CurrentView = new UsersManagerView();
         }
         #endregion
     }

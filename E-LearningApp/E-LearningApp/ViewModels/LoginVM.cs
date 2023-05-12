@@ -12,7 +12,7 @@ namespace E_LearningApp.ViewModels
 {
     public class LoginVM : BasePropertyChanged
     {
-        public LoginBLL LoginBLL { get; set; }
+        private LoginBLL LoginBLL { get; set; }
         public LoginVM()
         {
             LoginBLL = new LoginBLL();
