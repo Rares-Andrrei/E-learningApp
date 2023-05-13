@@ -19,5 +19,9 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             return GetRecordsWhere(u => u.Email == email).FirstOrDefault();
         }
+        public bool EmailAlreadyUsed(string email) 
+        { 
+            return Any(u => u.Email == email);
+        }
     }
 }

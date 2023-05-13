@@ -9,6 +9,7 @@ namespace E_LearningApp.Models.Database
         public SpecializationDL Specializations { get; set; }
         public ProfessorsDL Professors { get; set; }
         public ClassesDL Classes { get; set; }
+        public StudentsDL StudentsDL { get; set; }
 
 
         private readonly AppDbContext _dbContext;
@@ -19,7 +20,8 @@ namespace E_LearningApp.Models.Database
             UsersDL users,
             SpecializationDL specializations,
             ProfessorsDL professors,
-            ClassesDL classes
+            ClassesDL classes,
+            StudentsDL studentsDL
 
         )
         {
@@ -28,6 +30,7 @@ namespace E_LearningApp.Models.Database
             Specializations = specializations;
             Professors = professors;
             Classes = classes;
+            StudentsDL = studentsDL;
         }
 
         public void SaveChanges()

@@ -10,35 +10,26 @@ using System.Threading.Tasks;
 
 namespace E_LearningApp.Models.DataAccessLayer
 {
-    public class ProfessorsDL : BaseDL<Professor>
+    public  class StudentsDL : BaseDL<Student>
     {
         private readonly AppDbContext dbContext;
-        public ProfessorsDL(AppDbContext dbContext) : base(dbContext)
+        public StudentsDL(AppDbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
         }
-
-        public List<UserDisplayDto> GetProfessorToUserDisplayDto()
+        public List<UserDisplayDto> GetStudentToUserDisplayDto()
         {
-
             List<UserDisplayDto> list = new List<UserDisplayDto>();
             var items = GetRecords()
-                .Include(p => p.PersonalData)
-                .Include(p => p.User)
+                .Include(s => s.PersonalData)
+                .Include(s => s.User)
+                .Include(s => s.Class)
                 .ToList();
             foreach (var item in items)
             {
                 list.Add(new UserDisplayDto(item));
             }
             return list;
-        }
-
-        public List<Professor> GetAllAndRelations()
-        {
-            return GetRecords()
-                .Include(p => p.PersonalData)
-                .Include(p => p.User)
-                .ToList();
         }
     }
 }

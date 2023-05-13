@@ -12,7 +12,7 @@ namespace E_LearningApp.Settings
         static Dependencies() 
         {
             AppDbContext = new AppDbContext();
-            UnitOfWork = new UnitOfWork(AppDbContext, new UsersDL(AppDbContext), new SpecializationDL(AppDbContext), new ProfessorsDL(AppDbContext), new ClassesDL(AppDbContext));
+            UnitOfWork = new UnitOfWork(AppDbContext, new UsersDL(AppDbContext), new SpecializationDL(AppDbContext), new ProfessorsDL(AppDbContext), new ClassesDL(AppDbContext), new StudentsDL(AppDbContext));
             MainWindowVM = new MainWindowVM();
         }
     }

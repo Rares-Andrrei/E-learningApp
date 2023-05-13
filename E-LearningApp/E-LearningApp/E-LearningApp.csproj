@@ -211,10 +211,14 @@
       <DependentUpon>202305121643248_databaseOptimization4.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogicLayer\ClassesManagerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\UsersManagerBLL.cs" />
     <Compile Include="Models\DataAccessLayer\ClassesDL.cs" />
     <Compile Include="Models\DataAccessLayer\ProfessorsDL.cs" />
+    <Compile Include="Models\DataAccessLayer\StudentsDL.cs" />
     <Compile Include="Models\Dtos\ClassDto.cs" />
     <Compile Include="Models\Dtos\EntityFullNameIdDto.cs" />
+    <Compile Include="Models\Dtos\RoleDto.cs" />
+    <Compile Include="Models\Dtos\UserDisplayDto.cs" />
     <Compile Include="ViewModels\ClassesManagerVM.cs" />
     <Compile Include="ViewModels\UsersManagerVM.cs" />
     <Compile Include="Views\ClassesManagerView.xaml.cs">

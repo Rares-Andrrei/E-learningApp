@@ -68,7 +68,8 @@
 
             <WrapPanel Margin="4">
                 <TextBlock Text="Enter the year of study" Style="{StaticResource CommonTextStyle}"/>
-                <TextBox Style="{StaticResource CommonBoxStyle}" Text="{Binding YearOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+                <ComboBox Width="60" ItemsSource="{Binding YearsOfStudy}" SelectedItem="{Binding YearOfStudy, Mode=TwoWay}">
+                </ComboBox>
             </WrapPanel>
             
             <Button Content="Add" Style="{StaticResource ButtonStyle}" Width="70" Command="{Binding AddClassCommand}">
@@ -90,11 +91,6 @@
                     <DataGridTextColumn Header="Year of study" Binding="{Binding YearOfStudy}"/>
                     <DataGridTextColumn Header="Class master" Binding="{Binding ClassMasterFullName}"/>
                 </DataGrid.Columns>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="CellEditEnding">
-                        <command:EventToCommand Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
             </DataGrid>
         </Border>
 

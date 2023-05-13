@@ -1,5 +1,6 @@
 ﻿using E_LearningApp.Models.BusinessLogicLayer;
 using E_LearningApp.Models.EntityLayer;
+using E_LearningApp.Settings;
 using E_LearningApp.ViewModels.Commands;
 using E_LearningApp.Views;
 using System;
@@ -96,6 +97,24 @@ namespace E_LearningApp.ViewModels
         {
             CurrentView = new UsersManagerView();
         }
+
+        private ICommand _logOutCommand;
+        public ICommand LogOutCommand
+        {
+            get
+            {
+                if (_logOutCommand == null)
+                {
+                    _logOutCommand = new RelayCommandsV2(LogOut);
+                }
+                return _logOutCommand;
+            }
+        }
+        public void LogOut(object parameter)
+        {
+            Dependencies.MainWindowVM.ShowLogInView();
+        }
+
         #endregion
     }
 }

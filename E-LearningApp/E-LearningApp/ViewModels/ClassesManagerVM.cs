@@ -19,7 +19,7 @@ namespace E_LearningApp.ViewModels
         private ClassesManagerBLL ClassesManagerBLL { get; set; }
         public ObservableCollection<Specialization> SpecializationOptions { get; set; }
         public Specialization SelectedSpecialization { get; set; }
-        public Class SelectedItem { get; set; }
+        public ClassDto SelectedItem { get; set; }
 
         private ObservableCollection<ClassDto> _classes;
         public ObservableCollection<ClassDto> Classes
@@ -33,28 +33,13 @@ namespace E_LearningApp.ViewModels
 
         public string ClassName { get; set; }
         private string _yearOfStudy;
-        public string YearOfStudy
-        {
-            get { return _yearOfStudy; }
-            set {
-                int number;
-                if (value.Length <= 2 && int.TryParse(value, out number))
-                {
-                    if (number > 0 && number <= 12)
-                    {
-                        _yearOfStudy = value;
-                    }
-                }
-                else if (value == string.Empty)
-                {
-                    _yearOfStudy = value;
-                }
-            }
-        }
+        public string YearOfStudy { get; set; }
+        public List<string> YearsOfStudy { get; set; }
 
         public ClassesManagerVM()
         {
             ClassesManagerBLL = new ClassesManagerBLL();
+            YearsOfStudy = new List<string> { "9", "10", "11", "12" };
             InitializeUI();
         }
         private void InitializeUI()
@@ -99,6 +84,6 @@ namespace E_LearningApp.ViewModels
                 MessageBox.Show("Complete all fields", "Error");
             }
         }
-        #endregion
+        #endregion 
     }
 }

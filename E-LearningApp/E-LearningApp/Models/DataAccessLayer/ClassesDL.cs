@@ -22,8 +22,8 @@ namespace E_LearningApp.Models.DataAccessLayer
         }
         public List<ClassDto> GetClassesDtos()
         {
-            return GetRecords().Select(c => new ClassDto { Name = c.Name, Specialization = c.Specialization, 
-                ClassMasterFullName = c.ClassMaster.PersonalData.FirstName + c.ClassMaster.PersonalData.LastName, YearOfStudy = c.YearOfStudy, ClassMasterId = c.ClassMasterId }).ToList();
+            return GetRecords().Select(c => new ClassDto { Id = c.Id, Name = c.Name, Specialization = c.Specialization, 
+                ClassMasterFullName = c.ClassMaster.PersonalData.FirstName + " " + c.ClassMaster.PersonalData.LastName, YearOfStudy = c.YearOfStudy, ClassMasterId = c.ClassMasterId }).ToList();
         }
     }
 }

@@ -28,7 +28,7 @@
                     <Separator/>
                     <MenuItem Header="Subjects"/>
                 </MenuItem>
-                <MenuItem Header="-">
+                <MenuItem Header="Log Out" Command="{Binding LogOutCommand}">
                 </MenuItem>
             </Menu>
 
