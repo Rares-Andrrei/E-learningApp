@@ -12,6 +12,7 @@ namespace E_LearningApp.Models.Database
         public StudentsDL StudentsDL { get; set; }
         public SubjectsDL SubjectsDL { get; set; }  
         public SubjectClassCategoryAssociationDL SubjectClassCategoryAssociationDL { get; set; }
+        public ProfessorSubjectAssociationDL ProfessorSubjectAssociationDL { get; set; }
 
 
         private readonly AppDbContext _dbContext;
@@ -25,7 +26,8 @@ namespace E_LearningApp.Models.Database
             ClassesDL classes,
             StudentsDL studentsDL,
             SubjectsDL subjectsDL,
-            SubjectClassCategoryAssociationDL subjectClassCategoryAssociationDL
+            SubjectClassCategoryAssociationDL subjectClassCategoryAssociationDL,
+            ProfessorSubjectAssociationDL professorSubjectAssociationDL
         )
         {
             _dbContext = dbContext;
@@ -36,6 +38,7 @@ namespace E_LearningApp.Models.Database
             StudentsDL = studentsDL;
             SubjectsDL = subjectsDL;
             SubjectClassCategoryAssociationDL = subjectClassCategoryAssociationDL;
+            ProfessorSubjectAssociationDL = professorSubjectAssociationDL;
         }
 
         public void SaveChanges()

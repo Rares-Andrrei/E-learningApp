@@ -10,7 +10,7 @@
         Title="E-Learning Platform"
         Icon ="..\Images\logo.jpg"
         ResizeMode="NoResize"
-        Height="640" Width="1000">
+        Height="740" Width="1100">
     <Window.DataContext>
         <Binding Source="{x:Static ctx:Dependencies.MainWindowVM}" />
     </Window.DataContext>

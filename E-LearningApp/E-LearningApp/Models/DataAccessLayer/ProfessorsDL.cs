@@ -40,5 +40,11 @@ namespace E_LearningApp.Models.DataAccessLayer
                 .Include(p => p.User)
                 .ToList();
         }
+        public List<EntityFullNameIdDto> GetProfessorsToEntityFullNameIdDto()
+        {
+            return GetRecords()
+                .Include(p => p.PersonalData)
+                .Select(r => new EntityFullNameIdDto { FullName = r.PersonalData.FirstName + " " + r.PersonalData.LastName, Id = r.Id }).ToList();
+        }
     }
 }

@@ -84,7 +84,7 @@
 
         <Border Width="700" Height="250" Margin="4" BorderThickness="2">
             <DataGrid ItemsSource="{Binding Classes}" ColumnWidth="*" HeadersVisibility="Column" CanUserAddRows="False"
-                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectionMode="Single" AutoGenerateColumns="False">
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Specialization" Binding="{Binding Specialization.Name}"/>

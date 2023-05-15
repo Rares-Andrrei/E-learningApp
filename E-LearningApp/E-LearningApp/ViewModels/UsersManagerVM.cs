@@ -23,6 +23,7 @@ namespace E_LearningApp.ViewModels
 
         public UsersManagerVM()
         {
+            BirthDate = DateTime.Now;
             UsersManagerBLL = new UsersManagerBLL();
             ClassList = UsersManagerBLL.GetClassesDto();
             RoleList = UsersManagerBLL.GetUserRoles();
@@ -140,6 +141,11 @@ namespace E_LearningApp.ViewModels
                   Role == null)
             {
                 MessageBox.Show("Complete all fiedls", " Error");
+                return;
+            }
+            else if (BirthDate.Year <= DateTime.Now.Year - 200 || BirthDate.Year >= DateTime.Now.Year)
+            {
+                MessageBox.Show("Invalid date", " Error");
                 return;
             }
             else if (!Regex.IsMatch(Email, pattern))

@@ -227,6 +227,7 @@
     <Compile Include="Models\BusinessLogicLayer\UsersManagerBLL.cs" />
     <Compile Include="Models\DataAccessLayer\ClassesDL.cs" />
     <Compile Include="Models\DataAccessLayer\ProfessorsDL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProfessorSubjectAssociationDL.cs" />
     <Compile Include="Models\DataAccessLayer\StudentsDL.cs" />
     <Compile Include="Models\DataAccessLayer\SubjectClassCategoryAssociationDL.cs" />
     <Compile Include="Models\DataAccessLayer\SubjectsDL.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Models\Dtos\ClassDto.cs" />
     <Compile Include="Models\Dtos\DisplayBoolean.cs" />
     <Compile Include="Models\Dtos\EntityFullNameIdDto.cs" />
+    <Compile Include="Models\Dtos\ProfessorSubject.cs" />
     <Compile Include="Models\Dtos\RoleDto.cs" />
     <Compile Include="Models\Dtos\SubjectHasThesis.cs" />
     <Compile Include="Models\Dtos\UserDisplayDto.cs" />

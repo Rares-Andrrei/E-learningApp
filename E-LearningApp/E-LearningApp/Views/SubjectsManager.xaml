@@ -43,8 +43,8 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Margin="4" BorderThickness="2" BorderBrush="Black" Grid.Column="0">
-            <StackPanel>
+        <Border Margin="4" BorderThickness="1" BorderBrush="Black" Grid.Column="0">
+            <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Enter a subject name" Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center"/>
                 <TextBox Style="{StaticResource CommonBoxStyle}" Margin="3" Text="{Binding SubjectToAdd, Mode=TwoWay}"/>
 
@@ -76,7 +76,9 @@
             </StackPanel>
         </Border>
 
+
         <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Text="Associate a subject with a specialization and year of study" Style="{StaticResource CommonTextStyle}"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Year: " Style="{StaticResource CommonTextStyle}" VerticalAlignment="Center"/>
                 <ComboBox Width="60" Height="20" ItemsSource="{Binding YearOptions}" SelectedItem="{Binding SelectedYear, Mode=TwoWay}">
@@ -117,8 +119,8 @@
                 </StackPanel>
             </StackPanel>
 
-            <Border Width="300" Height="250" Margin="20, 10, 10, 10" BorderThickness="2">
-                <ListBox ItemsSource="{Binding ClassCategorySubjects}" HorizontalAlignment="Center" Width="290">
+            <Border Width="500" Height="180" Margin="20, 10, 10, 10" BorderThickness="2">
+                <ListBox ItemsSource="{Binding ClassCategorySubjects}" HorizontalAlignment="Center" Width="495">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -151,6 +153,49 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Border>
+
+            <StackPanel>
+                <TextBlock Text="Associate a professor with a subject:" Style="{StaticResource CommonTextStyle}"/>
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+
+                    <Border Width="300" Height="150" Margin="4" BorderThickness="2">
+                        <DataGrid ItemsSource="{Binding ProfessorSubjectsList}" ColumnWidth="*" HeadersVisibility="Column" CanUserAddRows="False" SelectionMode="Single" AutoGenerateColumns="False"
+                                  SelectedItem="{Binding SelectedProfessorSubject}" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Professor Name" Binding="{Binding ProfessorDtoEntity.FullName}" />
+                                <DataGridTextColumn Header="Subject" Binding="{Binding Subejct.Name}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+
+
+                    <ComboBox Width="160" Height="25" SelectedItem="{Binding SelectedProfessor, Mode=TwoWay}" ItemsSource="{Binding ProfessorOptions}" Margin="15,0,0,0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FullName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    
+                    <StackPanel Margin="20,0,0,0" VerticalAlignment="Center">
+                        <Button Content="Add Association" Style="{StaticResource ButtonStyle}" Width="105" IsEnabled="{Binding ButtonsEnabled}" Command="{Binding AddProfessorAssociationCommand}">
+                            <Button.Resources>
+                                <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                            </Button.Resources>
+                        </Button>
+
+                        <Button Content="Delete Association" Style="{StaticResource ButtonStyle}" Width="105" IsEnabled="{Binding ProfessorSubjectButtonVisibility}" Command="{Binding DeleteProfessorAssociationCommand}">
+                            <Button.Resources>
+                                <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+                
+                
+
+            </StackPanel>
         </StackPanel>
     </Grid>
 

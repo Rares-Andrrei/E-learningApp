@@ -82,5 +82,35 @@ namespace E_LearningApp.Models.BusinessLogicLayer
             }
             return list2;   
         }
+        public List<EntityFullNameIdDto> GetProfessorsFullNameDto()
+        {
+            return UnitOfWork.Professors.GetProfessorsToEntityFullNameIdDto();
+        }
+        public List<ProfessorSubject> GetProfessorsAndSubjects()
+        {
+            return UnitOfWork.ProfessorSubjectAssociationDL.GetProfessorSubjects();
+        }
+        public void AddProfessorSubjectAssociation(int professorId, Subject subject)
+        {
+            Professor professor = UnitOfWork.Professors.GetById(professorId);
+            if (professor != null && subject != null)
+            {
+                var item = new ProfessorSubjectAssociation { Professor = professor, Subject = subject };
+                if (!UnitOfWork.ProfessorSubjectAssociationDL.ProfessorSubjectExists(item))
+                {
+                    UnitOfWork.ProfessorSubjectAssociationDL.Insert(item);
+                    UnitOfWork.SaveChanges();
+                }
+            }
+        }
+        public void DeleteProfessorSubjectAssociation(int id)
+        {
+            ProfessorSubjectAssociation professorSubjectAssociation = UnitOfWork.ProfessorSubjectAssociationDL.GetById(id);
+            if (professorSubjectAssociation != null)
+            {
+                UnitOfWork.ProfessorSubjectAssociationDL.Remove(professorSubjectAssociation);
+                UnitOfWork.SaveChanges();
+            }
+        }
     }
 }
