@@ -94,11 +94,11 @@
             </DataGrid>
         </Border>
 
-        <!--<Button Content="Delete Specialization" Style="{StaticResource ButtonStyle}" IsEnabled="{Binding ButtonsEnabled}"
-                Command="{Binding DeleteCommand}">
+        <Button Content="Delete Class" Style="{StaticResource ButtonStyle}" IsEnabled="{Binding ButtonsEnabled}"
+                Command="{Binding DeleteClassCommand}">
             <Button.Resources>
                 <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
             </Button.Resources>
-        </Button>-->
+        </Button>
     </StackPanel>
 </UserControl>

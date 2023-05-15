@@ -39,5 +39,14 @@ namespace E_LearningApp.Models.BusinessLogicLayer
         {
             return UnitOfWork.Classes.GetClassesDtos();
         }
+        public void DeleteClass(ClassDto _classDto)
+        {
+            Class _class = UnitOfWork.Classes.GetById(_classDto.Id);
+            if (_class != null)
+            {
+                UnitOfWork.Classes.Remove(_class);
+                UnitOfWork.SaveChanges();
+            }
+        }
     }
 }

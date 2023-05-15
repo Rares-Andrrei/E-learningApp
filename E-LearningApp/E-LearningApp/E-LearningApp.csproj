@@ -210,19 +210,45 @@
     <Compile Include="Migrations\202305121643248_databaseOptimization4.designer.cs">
       <DependentUpon>202305121643248_databaseOptimization4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305141146567_nullableSpecialization.cs" />
+    <Compile Include="Migrations\202305141146567_nullableSpecialization.designer.cs">
+      <DependentUpon>202305141146567_nullableSpecialization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305150516091_database-update.cs" />
+    <Compile Include="Migrations\202305150516091_database-update.designer.cs">
+      <DependentUpon>202305150516091_database-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305150807130_minor-fix.cs" />
+    <Compile Include="Migrations\202305150807130_minor-fix.designer.cs">
+      <DependentUpon>202305150807130_minor-fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\BusinessLogicLayer\ClassesManagerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SubjectsManagerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UsersManagerBLL.cs" />
     <Compile Include="Models\DataAccessLayer\ClassesDL.cs" />
     <Compile Include="Models\DataAccessLayer\ProfessorsDL.cs" />
     <Compile Include="Models\DataAccessLayer\StudentsDL.cs" />
+    <Compile Include="Models\DataAccessLayer\SubjectClassCategoryAssociationDL.cs" />
+    <Compile Include="Models\DataAccessLayer\SubjectsDL.cs" />
+    <Compile Include="Models\Dtos\ClassCategorySubjects.cs" />
     <Compile Include="Models\Dtos\ClassDto.cs" />
+    <Compile Include="Models\Dtos\DisplayBoolean.cs" />
     <Compile Include="Models\Dtos\EntityFullNameIdDto.cs" />
     <Compile Include="Models\Dtos\RoleDto.cs" />
+    <Compile Include="Models\Dtos\SubjectHasThesis.cs" />
     <Compile Include="Models\Dtos\UserDisplayDto.cs" />
     <Compile Include="ViewModels\ClassesManagerVM.cs" />
+    <Compile Include="ViewModels\StudentVM.cs" />
+    <Compile Include="ViewModels\SubjectsManagerVM.cs" />
     <Compile Include="ViewModels\UsersManagerVM.cs" />
     <Compile Include="Views\ClassesManagerView.xaml.cs">
       <DependentUpon>ClassesManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentView.xaml.cs">
+      <DependentUpon>StudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubjectsManager.xaml.cs">
+      <DependentUpon>SubjectsManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UsersManagerView.xaml.cs">
       <DependentUpon>UsersManagerView.xaml</DependentUpon>
@@ -339,6 +365,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\StudentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubjectsManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UsersManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -387,6 +421,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305121643248_databaseOptimization4.resx">
       <DependentUpon>202305121643248_databaseOptimization4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141146567_nullableSpecialization.resx">
+      <DependentUpon>202305141146567_nullableSpecialization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305150516091_database-update.resx">
+      <DependentUpon>202305150516091_database-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305150807130_minor-fix.resx">
+      <DependentUpon>202305150807130_minor-fix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

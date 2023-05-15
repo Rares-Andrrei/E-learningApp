@@ -26,7 +26,7 @@
                     <Separator/>
                     <MenuItem Header="Specializations" Command="{Binding ShowAddSpecializationCommand}"/>
                     <Separator/>
-                    <MenuItem Header="Subjects"/>
+                    <MenuItem Header="Subjects" Command="{Binding ShowSubjectsMangerCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Log Out" Command="{Binding LogOutCommand}">
                 </MenuItem>

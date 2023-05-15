@@ -115,6 +115,23 @@ namespace E_LearningApp.ViewModels
             Dependencies.MainWindowVM.ShowLogInView();
         }
 
+        private ICommand _showSubjectsMangerCommand;
+        public ICommand ShowSubjectsMangerCommand
+        {
+            get
+            {
+                if (_showSubjectsMangerCommand == null)
+                {
+                    _showSubjectsMangerCommand = new RelayCommandsV2(ShowSubjectsManger);
+                }
+                return _showSubjectsMangerCommand;
+            }
+        }
+        public void ShowSubjectsManger(object parameter)
+        {
+            CurrentView = new SubjectsManager();
+        }
+
         #endregion
     }
 }

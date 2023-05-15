@@ -1,6 +1,7 @@
 ﻿using E_LearningApp.Models.Database;
 using E_LearningApp.ViewModels;
 using E_LearningApp.Models.DataAccessLayer;
+using E_LearningApp.Models.EntityLayer;
 
 namespace E_LearningApp.Settings
 {
@@ -12,7 +13,8 @@ namespace E_LearningApp.Settings
         static Dependencies() 
         {
             AppDbContext = new AppDbContext();
-            UnitOfWork = new UnitOfWork(AppDbContext, new UsersDL(AppDbContext), new SpecializationDL(AppDbContext), new ProfessorsDL(AppDbContext), new ClassesDL(AppDbContext), new StudentsDL(AppDbContext));
+            UnitOfWork = new UnitOfWork(AppDbContext, new UsersDL(AppDbContext), new SpecializationDL(AppDbContext), new ProfessorsDL(AppDbContext), new ClassesDL(AppDbContext), new StudentsDL(AppDbContext),
+                new SubjectsDL(AppDbContext), new SubjectClassCategoryAssociationDL(AppDbContext));
             MainWindowVM = new MainWindowVM();
         }
     }

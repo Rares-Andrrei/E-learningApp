@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -33,8 +34,62 @@ namespace E_LearningApp.ViewModels
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public RoleDto Role { get; set; }
-        public ClassDto Class { get; set; }
+        private bool _selectClassVisibility;
+        public bool SelectClassVisibility
+        {
+            get { return _selectClassVisibility; }
+            set { _selectClassVisibility = value; NotifyPropertyChanged(nameof(SelectClassVisibility)); }
+        }
+        private RoleDto _role;
+        public RoleDto Role
+        {
+            get { return _role;}
+            set
+            {
+                _role = value;
+                if (value.UserRole != UserRole.Student)
+                {
+                    Class = null;
+                    SelectClassVisibility = false;
+                }
+                else
+                {
+                    SelectClassVisibility = true;
+                }
+            }
+        }
+
+        private bool _buttonsEnabled;
+        public bool ButtonsEnabled
+        {
+            get { return _buttonsEnabled; }
+            set { _buttonsEnabled = value; NotifyPropertyChanged(nameof(ButtonsEnabled)); }
+        }
+
+        private UserDisplayDto _selectedItem;
+        public UserDisplayDto SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                if (_selectedItem != null)
+                {
+                    ButtonsEnabled = true;
+                }
+                else
+                {
+                    ButtonsEnabled = false;
+                }
+            }
+        }
+
+        private ClassDto _class;
+        public ClassDto Class
+        {
+            get { return _class; }
+            set { _class = value; NotifyPropertyChanged(nameof(Class)); }
+        }
 
         private List<ClassDto> _classList;
         public List<ClassDto> ClassList
@@ -126,6 +181,27 @@ namespace E_LearningApp.ViewModels
             }
         }
 
-        #endregion
+        private ICommand _deleteUserCommand;
+        public ICommand DeleteUserCommand
+        {
+            get
+            {
+                if (_deleteUserCommand == null)
+                {
+                    _deleteUserCommand = new RelayCommandsV2(DeleteClass);
+                }
+                return _deleteUserCommand;
+            }
+        }
+        public void DeleteClass(object parameter)
+        {
+            if (SelectedItem != null)
+            {
+                UsersManagerBLL.DeleteUser(SelectedItem);
+                UpdateUiList();
+            }
+        }
+
+        #endregion 
     }
 }

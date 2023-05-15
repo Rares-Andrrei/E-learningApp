@@ -13,7 +13,8 @@ namespace E_LearningApp.Models.EntityLayer
 
         public bool Thesis { get; set; }
 
-        public int ClassCategortId { get; set; }
-        public Class ClassCategory { get; set; }
+        public string YearOfStudy { get; set; }
+        public int SpecializationId { get; set; }
+        public Specialization Specialization { get; set; }
     }
 }

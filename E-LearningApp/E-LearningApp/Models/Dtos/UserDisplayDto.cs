@@ -1,4 +1,5 @@
 ﻿using E_LearningApp.Models.EntityLayer;
+using E_LearningApp.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace E_LearningApp.Models.Dtos
             BirthDate = professor.PersonalData.BirthDate;
             Email = professor.User.Email;
             Password = professor.User.Password;
+            UserRole = UserRole.Professor;
             ClassName = "-";
         }
         public UserDisplayDto(Student student)
@@ -28,6 +30,7 @@ namespace E_LearningApp.Models.Dtos
             BirthDate = student.PersonalData.BirthDate;
             Email = student.User.Email;
             Password = student.User.Password;
+            UserRole = UserRole.Student;
             if (student.Class == null)
             {
                 ClassName = "-";
@@ -46,5 +49,6 @@ namespace E_LearningApp.Models.Dtos
         public string Email { get; set; }
         public string Password { get; set; }
         public string ClassName { get; set; }
+        public UserRole UserRole { get; set; }
     }
 }

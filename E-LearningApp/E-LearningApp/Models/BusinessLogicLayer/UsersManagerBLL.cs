@@ -26,7 +26,7 @@ namespace E_LearningApp.Models.BusinessLogicLayer
         {
             List<UserRole> roles = new List<UserRole>();
             roles.AddRange(Enum.GetValues(typeof(UserRole)).Cast<UserRole>());
-            return roles.Select(r => new RoleDto(r)).ToList();
+            return roles.Select(r => new RoleDto(r)).Where(r => r.UserRole != UserRole.Administrator).ToList();
         }
         public bool AddNewProfessor(Professor professor)
         {
@@ -56,6 +56,29 @@ namespace E_LearningApp.Models.BusinessLogicLayer
         public List<UserDisplayDto> GetUserDisplayDtos()
         {
             return UnitOfWork.Professors.GetProfessorToUserDisplayDto().Concat(UnitOfWork.StudentsDL.GetStudentToUserDisplayDto()).ToList();
+        }
+
+        public void DeleteUser(UserDisplayDto userDisplayDto)
+        {               
+            switch(userDisplayDto.UserRole)
+            {
+                case UserRole.Student:
+                    Student student = UnitOfWork.StudentsDL.GetById(userDisplayDto.Id);
+                    if (student != null)
+                    {
+                        UnitOfWork.StudentsDL.Remove(student);
+                        UnitOfWork.SaveChanges();
+                    }
+                    break;
+                case UserRole.Professor:
+                    Professor professor = UnitOfWork.Professors.GetById(userDisplayDto.Id);
+                    if (professor != null)
+                    {
+                        UnitOfWork.Professors.Remove(professor);
+                        UnitOfWork.SaveChanges();
+                    }
+                    break;
+            }
         }
     }
 }

@@ -19,7 +19,31 @@ namespace E_LearningApp.ViewModels
         private ClassesManagerBLL ClassesManagerBLL { get; set; }
         public ObservableCollection<Specialization> SpecializationOptions { get; set; }
         public Specialization SelectedSpecialization { get; set; }
-        public ClassDto SelectedItem { get; set; }
+
+        private bool _buttonsEnabled;
+        public bool ButtonsEnabled
+        {
+            get { return _buttonsEnabled; }
+            set { _buttonsEnabled = value; NotifyPropertyChanged(nameof(ButtonsEnabled)); }
+        }
+
+        private ClassDto _selectedItem;
+        public ClassDto SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                if (_selectedItem != null)
+                {
+                    ButtonsEnabled = true;
+                }
+                else
+                {
+                    ButtonsEnabled = false;
+                }
+            }
+        }
 
         private ObservableCollection<ClassDto> _classes;
         public ObservableCollection<ClassDto> Classes
@@ -84,6 +108,28 @@ namespace E_LearningApp.ViewModels
                 MessageBox.Show("Complete all fields", "Error");
             }
         }
+
+        private ICommand _deleteClassCommand;
+        public ICommand DeleteClassCommand
+        {
+            get
+            {
+                if (_deleteClassCommand == null)
+                {
+                    _deleteClassCommand = new RelayCommandsV2(DeleteClass);
+                }
+                return _deleteClassCommand;
+            }
+        }
+        public void DeleteClass(object parameter)
+        {
+            if (SelectedItem != null)
+            {
+                ClassesManagerBLL.DeleteClass(SelectedItem);
+                UpdateClassesList();
+            }
+        }
+
         #endregion 
     }
 }

@@ -10,7 +10,7 @@ namespace E_LearningApp.Models.EntityLayer
     {
         public string Name { get; set; }
 
-        public int SpecializationId { get; set; }
+        public int? SpecializationId { get; set; }
         public Specialization Specialization { get; set; }
 
         public string YearOfStudy { get; set; }

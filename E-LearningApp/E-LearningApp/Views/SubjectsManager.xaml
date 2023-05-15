@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="E_LearningApp.Views.SubjectsManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:E_LearningApp.Views" 
+             xmlns:viewmodels="clr-namespace:E_LearningApp.ViewModels" 
+             xmlns:local1="clr-namespace:E_LearningApp.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="640" d:DesignWidth="1000">
+
+    <UserControl.DataContext>
+        <viewmodels:SubjectsManagerVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+
+        <Style x:Key="CommonTextStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+        </Style>
+
+        <Style x:Key="CommonBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style x:Key="RoundedBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="24"/>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Margin="4" BorderThickness="2" BorderBrush="Black" Grid.Column="0">
+            <StackPanel>
+                <TextBlock Text="Enter a subject name" Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center"/>
+                <TextBox Style="{StaticResource CommonBoxStyle}" Margin="3" Text="{Binding SubjectToAdd, Mode=TwoWay}"/>
+
+                <Button Content="Add" Style="{StaticResource ButtonStyle}" Width="60" Margin="0,2,0,16" Command="{Binding AddSubjectCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                    </Button.Resources>
+                </Button>
+
+                <Border Width="170" Height="200" Margin="4" BorderThickness="2">
+                    <DataGrid ItemsSource="{Binding Subjects}" ColumnWidth="*" HeadersVisibility="Column" CanUserAddRows="False"
+                           SelectionMode="Single" AutoGenerateColumns="False" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+                <Button Content="Delete Subject" IsEnabled="{Binding ButtonsEnabled}"
+                   Command="{Binding DeleteSubjectCommand}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                    </Button.Resources>
+                    <Button.Style>
+                        <StaticResource ResourceKey="ButtonStyle"/>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Year: " Style="{StaticResource CommonTextStyle}" VerticalAlignment="Center"/>
+                <ComboBox Width="60" Height="20" ItemsSource="{Binding YearOptions}" SelectedItem="{Binding SelectedYear, Mode=TwoWay}">
+                </ComboBox>
+
+                <TextBlock Text="Specialization: " Style="{StaticResource CommonTextStyle}" VerticalAlignment="Center"/>
+                <ComboBox Width="100" Height="20" ItemsSource="{Binding SpecializationOptions}" SelectedItem="{Binding SelectedSpecialization, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Thesis: " Style="{StaticResource CommonTextStyle}" VerticalAlignment="Center"/>
+                <ComboBox Width="50" Height="20" SelectedItem="{Binding HaveThesis, Mode=TwoWay}" ItemsSource="{Binding ThesisOptions}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StringValue}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <StackPanel Margin="36,0,0,0">
+
+                    <Button Content="Add Association" Style="{StaticResource ButtonStyle}" Width="105" IsEnabled="{Binding ButtonsEnabled}" Command="{Binding AddAssociationCommand}">
+                        <Button.Resources>
+                            <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Content="Delete Association" Style="{StaticResource ButtonStyle}" Width="105" IsEnabled="{Binding ButtonsEnabled}" Command="{Binding DeleteAssociationCommand}">
+                        <Button.Resources>
+                            <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                        </Button.Resources>
+                    </Button>
+
+                </StackPanel>
+            </StackPanel>
+
+            <Border Width="300" Height="250" Margin="20, 10, 10, 10" BorderThickness="2">
+                <ListBox ItemsSource="{Binding ClassCategorySubjects}" HorizontalAlignment="Center" Width="290">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" >
+                                      <Run Text="Year of Study: " />
+                                    <Run Text="{Binding YearOfStudy}" />
+                                    <Run Text=" | "/>
+                                    <Run Text="Specialziation: " />
+                                    <Run Text="{Binding Specialization.Name}" />
+                                </TextBlock>
+                                <ListBox ItemsSource="{Binding Subjects}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Subject.Name}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding HasThesis}" Value="True">
+                                                                <Setter Property="Foreground" Value="Red" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </StackPanel>
+    </Grid>
+
+</UserControl>
