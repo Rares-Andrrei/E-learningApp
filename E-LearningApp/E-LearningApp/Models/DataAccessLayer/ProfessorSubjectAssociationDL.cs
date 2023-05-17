@@ -18,13 +18,14 @@ namespace E_LearningApp.Models.DataAccessLayer
             this.dbContext = dbContext;
         }
 
-        public List<ProfessorSubject> GetProfessorSubjects()
+        public List<ProfessorSubjectDto> GetProfessorSubjects()
         {
-            return  GetRecords()
+            return GetRecords()
                 .Include(r => r.Professor)
                 .Include(r => r.Professor.PersonalData)
                 .Include(r => r.Subject)
-                .Select(p => new ProfessorSubject
+                .Include(r => r.Class)
+                .Select(p => new ProfessorSubjectDto
                 {
                     Id = p.Id,
                     ProfessorDtoEntity = new EntityFullNameIdDto
@@ -32,12 +33,14 @@ namespace E_LearningApp.Models.DataAccessLayer
                         Id = p.Id,
                         FullName = p.Professor.PersonalData.FirstName + " " + p.Professor.PersonalData.LastName
                     },
-                    Subejct = p.Subject
+                    Subejct = p.Subject,
+                    ClassId = p.Class.Id,
+                    ClassName = p.Class.Name
                 }).ToList();
         }
         public bool ProfessorSubjectExists(ProfessorSubjectAssociation professorSubjectAssociation)
         {
-            return Any(r => r.ProfessorId == professorSubjectAssociation.Professor.Id && r.SubjectId == professorSubjectAssociation.Subject.Id);
+            return Any(r => r.ProfessorId == professorSubjectAssociation.Professor.Id && r.SubjectId == professorSubjectAssociation.Subject.Id && r.ClassId == professorSubjectAssociation.Class.Id);
         }
     }
 }

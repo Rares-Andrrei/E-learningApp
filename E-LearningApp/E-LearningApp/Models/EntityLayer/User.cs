@@ -11,7 +11,6 @@ namespace E_LearningApp.Models.EntityLayer
 {
     public class User : BaseEntity
     {
-       // [EmailAddress]
         public string Email { get; set; }
         public string Password { get; set; }
         public UserRole Role { get; set; }

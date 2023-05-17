@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace E_LearningApp.Models.Dtos
 {
-    public class ClassCategorySubjects
+    public class ClassCategorySubjectsDto
     {
         public string YearOfStudy { get; set; }
         public Specialization Specialization { get; set; }
-        public List<SubjectHasThesis> Subjects { get; set; }
+        public List<SubjectHasThesisDto> Subjects { get; set; }
     }
 }

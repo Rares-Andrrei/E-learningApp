@@ -13,5 +13,8 @@ namespace E_LearningApp.Models.EntityLayer
 
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
+
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
     }
 }

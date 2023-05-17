@@ -132,6 +132,23 @@ namespace E_LearningApp.ViewModels
             CurrentView = new SubjectsManager();
         }
 
+        private ICommand _showProfessorSubjectsManagerCommand;
+        public ICommand ShowProfessorSubjectsManagerCommand
+        {
+            get
+            {
+                if (_showProfessorSubjectsManagerCommand == null)
+                {
+                    _showProfessorSubjectsManagerCommand = new RelayCommandsV2(ShowProfessorSubjectsManager);
+                }
+                return _showProfessorSubjectsManagerCommand;
+            }
+        }
+        public void ShowProfessorSubjectsManager(object parameter)
+        {
+            CurrentView = new ProfessorSubjectManagerView();
+        }
+
         #endregion
     }
 }

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace E_LearningApp.Models.Dtos
 {
-    public class SubjectHasThesis
+    public class SubjectHasThesisDto
     {
+        public int Id { get; set; }
         public Subject Subject { get; set; }
         public bool HasThesis { get; set; }
     }

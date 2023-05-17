@@ -45,14 +45,30 @@ namespace E_LearningApp.ViewModels
             }
         }
 
-        private List<EntityFullNameIdDto> _professorOptions;
-        public List<EntityFullNameIdDto> ProfessorOptions
+        private SubjectHasThesisDto _selectedAssociation;
+        public SubjectHasThesisDto SelectedAssociation
         {
-            get { return _professorOptions; }
-            set { _professorOptions = value; NotifyPropertyChanged(nameof(ProfessorOptions)); }
+            get { return _selectedAssociation; }
+            set
+            {
+                _selectedAssociation = value;
+                if (value == null)
+                {
+                    DeleteAssociationSCButtonV = false;
+                }
+                else
+                {
+                    DeleteAssociationSCButtonV = true;
+                }
+            }
         }
 
-        public EntityFullNameIdDto SelectedProfessor { get; set; } 
+        private bool _deleteAssociationSCButtonV;
+        public bool DeleteAssociationSCButtonV
+        {
+            get { return _deleteAssociationSCButtonV; }
+            set { _deleteAssociationSCButtonV = value; NotifyPropertyChanged(nameof(DeleteAssociationSCButtonV)); }
+        }
 
         private bool _buttonsEnabled;
         public bool ButtonsEnabled
@@ -74,56 +90,24 @@ namespace E_LearningApp.ViewModels
 
         public List<string> YearOptions { get; set; }
 
-        public DisplayBoolean HaveThesis { get; set; }
+        public DisplayBooleanDto HaveThesis { get; set; }
 
-        public List<DisplayBoolean> ThesisOptions { get; set; }
+        public List<DisplayBooleanDto> ThesisOptions { get; set; }
 
-        private List<ClassCategorySubjects> _classCategorySubjects;
-        public List<ClassCategorySubjects> ClassCategorySubjects
+        private List<ClassCategorySubjectsDto> _classCategorySubjects;
+        public List<ClassCategorySubjectsDto> ClassCategorySubjects
         {
             get { return _classCategorySubjects; }
             set { _classCategorySubjects = value; NotifyPropertyChanged(nameof(ClassCategorySubjects)); }
         }
 
-        private List<ProfessorSubject> _professorSubjectsList;
-        public List<ProfessorSubject> ProfessorSubjectsList
-        {
-            get { return _professorSubjectsList; }
-            set { _professorSubjectsList = value; NotifyPropertyChanged(nameof(ProfessorSubjectsList)); }
-        }
-
         public SubjectsManagerBLL  SubjectsManagerBLL { get; set; }
-
-        private bool _professorSubjectButtonVisibility;
-        public bool ProfessorSubjectButtonVisibility
-        {
-            get { return _professorSubjectButtonVisibility; }
-            set { _professorSubjectButtonVisibility = value; NotifyPropertyChanged(nameof(ProfessorSubjectButtonVisibility)); }
-        }
-
-        private ProfessorSubject _selectedProfessorSubject;
-        public ProfessorSubject SelectedProfessorSubject
-        {
-            get { return _selectedProfessorSubject; }
-            set
-            {
-                _selectedProfessorSubject = value;
-                if (value != null)
-                {
-                    ProfessorSubjectButtonVisibility = true;
-                }
-                else
-                {
-                    ProfessorSubjectButtonVisibility = false;
-                }
-            }
-        }
 
         public SubjectsManagerVM()
         {
             SubjectsManagerBLL = new SubjectsManagerBLL();
             YearOptions = new List<string> { "9", "10", "11", "12" };
-            ThesisOptions = new List<DisplayBoolean> {new DisplayBoolean { BooleanValue = true, StringValue = "true"}, new DisplayBoolean { BooleanValue = false, StringValue = "false" } };
+            ThesisOptions = new List<DisplayBooleanDto> {new DisplayBooleanDto { BooleanValue = true, StringValue = "true"}, new DisplayBooleanDto { BooleanValue = false, StringValue = "false" } };
             InitUi();
         }
         public void InitUi()
@@ -131,8 +115,6 @@ namespace E_LearningApp.ViewModels
             UpdateSubjectsUi();
             UpdateSpecializationsList();
             UpdateAssociationsList();
-            UpdateProfessorOptions();
-            UpdateProfessorSubjectList();
         }
         public void UpdateSubjectsUi()
         {
@@ -146,15 +128,6 @@ namespace E_LearningApp.ViewModels
         {
             ClassCategorySubjects = SubjectsManagerBLL.GetClassCategoryWithSubject();
         }
-        public void UpdateProfessorOptions()
-        {
-            ProfessorOptions = SubjectsManagerBLL.GetProfessorsFullNameDto();
-        }
-        public void UpdateProfessorSubjectList()
-        {
-            ProfessorSubjectsList = SubjectsManagerBLL.GetProfessorsAndSubjects();
-        }
-
 
         #region commands
 
@@ -197,7 +170,6 @@ namespace E_LearningApp.ViewModels
             {
                 UpdateSubjectsUi();
                 UpdateAssociationsList();
-                UpdateProfessorSubjectList();
             }
         }
 
@@ -236,52 +208,11 @@ namespace E_LearningApp.ViewModels
         }
         public void DeleteAssociation(object parameter)
         {
-            UpdateAssociationsList();
-        }
-
-        private ICommand _deleteProfessorAssociation;
-        public ICommand DeleteProfessorAssociationCommand
-        {
-            get
+            if (SelectedAssociation != null && SubjectsManagerBLL.DeleteSubjectClassCategoryAssociation(SelectedAssociation.Id))
             {
-                if (_deleteProfessorAssociation == null)
-                {
-                    _deleteProfessorAssociation = new RelayCommandsV2(DeleteProfessorAssociation);
-                }
-                return _deleteProfessorAssociation;
+                UpdateAssociationsList();
             }
         }
-        public void DeleteProfessorAssociation(object parameter)
-        {
-            if (SelectedProfessorSubject != null)
-            {
-                SubjectsManagerBLL.DeleteProfessorSubjectAssociation(SelectedProfessorSubject.Id);
-                UpdateProfessorSubjectList();
-            }     
-        }
-
-        private ICommand _addProfessorAssociation;
-        public ICommand AddProfessorAssociationCommand
-        {
-            get
-            {
-                if (_addProfessorAssociation == null)
-                {
-                    _addProfessorAssociation = new RelayCommandsV2(AddProfessorAssociation);
-                }
-                return _addProfessorAssociation;
-            }
-        }
-        public void AddProfessorAssociation(object parameter)
-        {
-            if (SelectedProfessor != null)
-            {
-                SubjectsManagerBLL.AddProfessorSubjectAssociation(SelectedProfessor.Id, SelectedItem);
-                UpdateProfessorSubjectList();
-            }
-        }
-
-
         #endregion
     }
 }
