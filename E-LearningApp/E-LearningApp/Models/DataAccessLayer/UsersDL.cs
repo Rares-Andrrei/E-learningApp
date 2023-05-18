@@ -23,5 +23,9 @@ namespace E_LearningApp.Models.DataAccessLayer
         { 
             return Any(u => u.Email == email);
         }
+        public string GetEmailByUserId(int userId)
+        {
+            return GetRecords().Where(r=> r.Id == userId).Select(r=> r.Email).FirstOrDefault();
+        }
     }
 }

@@ -46,6 +46,7 @@ namespace E_LearningApp.ViewModels
                     switch (user.Item2)
                     {
                         case UserRole.Student:
+                            Dependencies.MainWindowVM.ShowStudentView(new StudentVM(user.Item1));
                             break;
                         case UserRole.Professor:
                             break;

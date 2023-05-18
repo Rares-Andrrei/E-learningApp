@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_LearningApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,14 @@ using System.Windows.Shapes;
 namespace E_LearningApp.Views
 {
     /// <summary>
-    /// Interaction logic for StudentView.xaml
+    /// Interaction logic for StudentAbsencesView.xaml
     /// </summary>
-    public partial class StudentView : UserControl
+    public partial class StudentAbsencesView : UserControl
     {
-        public StudentView()
+        public StudentAbsencesView(StudentAbsencesVM studentAbsencesVM)
         {
             InitializeComponent();
+            DataContext = studentAbsencesVM;
         }
     }
 }

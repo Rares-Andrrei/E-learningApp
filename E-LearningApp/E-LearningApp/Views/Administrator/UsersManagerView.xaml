@@ -102,7 +102,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
                     <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-                    <DataGridTextColumn Header="Birth Date" Binding="{Binding BirthDate}"/>
+                    <DataGridTextColumn Header="Birth Date" Binding="{Binding BirthDate, StringFormat={}{0:MM/dd/yyyy}}"/>
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
                     <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
                     <DataGridTextColumn Header="ClassName" Binding="{Binding ClassName}"/>

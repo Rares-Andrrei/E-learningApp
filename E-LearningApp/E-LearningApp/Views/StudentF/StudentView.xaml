@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="E_LearningApp.Views.StudentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:E_LearningApp.Views" 
+             xmlns:viewmodels="clr-namespace:E_LearningApp.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:StudentVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Background="White">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Height="30" FontSize="15" FontWeight="Bold">
+                <Menu.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF3A60AD" Offset="0.528"/>
+                        <GradientStop Color="#FF6A85D8" Offset="0.01"/>
+                        <GradientStop Color="#FF3464C4" Offset="1"/>
+                        <GradientStop Color="#FF202E7E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Menu.Background>
+                <MenuItem Header="Show" Margin="4">
+                    <MenuItem Header="Grades" Command="{Binding ShowGradesViewCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Absences" Command="{Binding ShowAbsencesViewCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Grades Average" />
+                    <Separator/>
+                </MenuItem>
+                <MenuItem Header="Log Out" Command="{Binding LogOutCommand}">
+                </MenuItem>
+            </Menu>
+
+
+            <TextBlock Text="{Binding Path=Email, StringFormat='Logged in as Student with e-mail {0}'}" DockPanel.Dock="Bottom" Background="#FF6A85D8" TextAlignment="Center"
+                       FontSize="13" FontStyle="Italic" Margin="2"/>
+
+            <ContentControl Content="{Binding CurrentView}"/>
+            
+        </DockPanel>
+    </Grid>
+</UserControl>

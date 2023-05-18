@@ -20,12 +20,15 @@ namespace E_LearningApp.ViewModels
         }
         public MainWindowVM()
         {
-           CurrentView = new AdministratorView(new AdministratorVM(2));
-           //CurrentView = new LoginView();
+            CurrentView = new LoginView();
         }
         public void ShowAdministratorsView(AdministratorVM administratorVM)
         {
             CurrentView = new AdministratorView(administratorVM);
+        }
+        public void ShowStudentView(StudentVM studentVM)
+        {
+            CurrentView = new StudentView(studentVM);
         }
         public void ShowLogInView()
         {

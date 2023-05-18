@@ -14,7 +14,8 @@ namespace E_LearningApp.Settings
         {
             AppDbContext = new AppDbContext();
             UnitOfWork = new UnitOfWork(AppDbContext, new UsersDL(AppDbContext), new SpecializationDL(AppDbContext), new ProfessorsDL(AppDbContext), new ClassesDL(AppDbContext), new StudentsDL(AppDbContext),
-                new SubjectsDL(AppDbContext), new SubjectClassCategoryAssociationDL(AppDbContext), new ProfessorSubjectAssociationDL(AppDbContext), new UserDL(AppDbContext), new PersonDL(AppDbContext));
+                new SubjectsDL(AppDbContext), new SubjectClassCategoryAssociationDL(AppDbContext), new ProfessorSubjectAssociationDL(AppDbContext), new UserDL(AppDbContext), new PersonDL(AppDbContext),
+                new StudentSubjectGradesDL(AppDbContext), new StudentAbsenceAssociationDL(AppDbContext));
             MainWindowVM = new MainWindowVM();
         }
     }

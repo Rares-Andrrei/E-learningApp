@@ -31,5 +31,9 @@ namespace E_LearningApp.Models.DataAccessLayer
             }
             return list;
         }
+        public int GetStudentIdByUserId(int userId)
+        {
+            return GetRecords().Where(r => r.UserId == userId).Select(r=> r.Id).FirstOrDefault();
+        }
     }
 }

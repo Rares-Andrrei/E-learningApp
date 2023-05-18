@@ -12,6 +12,7 @@ namespace E_LearningApp.Models.EntityLayer
         public int StudentId { get; set; }
         public Student Student { get; set; }
 
+        public int Semester { get; set; }
         public DateTime AbsenceDate { get; set; }
         public bool Reasoned { get; set; }
 

@@ -41,7 +41,7 @@
         </Style>
 
     </UserControl.Resources>
-    <Grid Background="Orange">
+    <Grid Background="OrangeRed">
 
         <Viewbox Width="340" Height="400" Stretch="Uniform">
             <StackPanel VerticalAlignment="Center">
