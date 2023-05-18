@@ -66,7 +66,11 @@ namespace E_LearningApp.Models.BusinessLogicLayer
                     Student student = UnitOfWork.StudentsDL.GetById(userDisplayDto.Id);
                     if (student != null)
                     {
+                        var person = UnitOfWork.PersonDL.GetById(student.PersonalDataId);
+                        var user = UnitOfWork.UserDL.GetById(student.UserId);
                         UnitOfWork.StudentsDL.Remove(student);
+                        UnitOfWork.PersonDL.Remove(person);
+                        UnitOfWork.UserDL.Remove(user);
                         UnitOfWork.SaveChanges();
                     }
                     break;
@@ -74,7 +78,11 @@ namespace E_LearningApp.Models.BusinessLogicLayer
                     Professor professor = UnitOfWork.Professors.GetById(userDisplayDto.Id);
                     if (professor != null)
                     {
+                        var person = UnitOfWork.PersonDL.GetById(professor.PersonalDataId);
+                        var user = UnitOfWork.UserDL.GetById(professor.UserId);
                         UnitOfWork.Professors.Remove(professor);
+                        UnitOfWork.PersonDL.Remove(person);
+                        UnitOfWork.UserDL.Remove(user);
                         UnitOfWork.SaveChanges();
                     }
                     break;

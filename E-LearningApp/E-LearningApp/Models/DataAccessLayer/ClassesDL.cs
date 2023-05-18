@@ -25,5 +25,9 @@ namespace E_LearningApp.Models.DataAccessLayer
             return GetRecords().Select(c => new ClassDto { Id = c.Id, Name = c.Name, Specialization = c.Specialization, 
                 ClassMasterFullName = c.ClassMaster.PersonalData.FirstName + " " + c.ClassMaster.PersonalData.LastName, YearOfStudy = c.YearOfStudy, ClassMasterId = c.ClassMasterId }).ToList();
         }
+        public List<int> GetClassMastersUsed()
+        {
+            return GetRecords().Where(r=> r.ClassMasterId != null).Select(r => r.ClassMasterId.Value).ToList();
+        }
     }
 }

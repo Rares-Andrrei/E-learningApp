@@ -52,7 +52,12 @@ namespace E_LearningApp.ViewModels
             set { _classes = value; NotifyPropertyChanged(nameof(Classes)); }
         }
 
-        public ObservableCollection<EntityFullNameIdDto> ClassMasterOptions { get; set; }
+        private ObservableCollection<EntityFullNameIdDto> _classMasterOptions;
+        public ObservableCollection<EntityFullNameIdDto>  ClassMasterOptions
+        {
+            get { return _classMasterOptions; }
+            set { _classMasterOptions = value; NotifyPropertyChanged(nameof(ClassMasterOptions)); }
+        }
         public EntityFullNameIdDto SelectedClassMaster { get; set; }
 
         public string ClassName { get; set; }
@@ -69,10 +74,13 @@ namespace E_LearningApp.ViewModels
         private void InitializeUI()
         {
             SpecializationOptions = new ObservableCollection<Specialization>(ClassesManagerBLL.GetSpecializations());
-            ClassMasterOptions = new ObservableCollection<EntityFullNameIdDto>(ClassesManagerBLL.GetClassMasters());
+            UpdateClassMasterOptions();
             UpdateClassesList();
         }
-
+        private void UpdateClassMasterOptions()
+        {
+            ClassMasterOptions = new ObservableCollection<EntityFullNameIdDto>(ClassesManagerBLL.GetClassMasters());
+        }
         private void UpdateClassesList()
         {
             Classes = new ObservableCollection<ClassDto>(ClassesManagerBLL.GetClasses());
@@ -101,6 +109,7 @@ namespace E_LearningApp.ViewModels
                 else
                 {
                     UpdateClassesList();
+                    UpdateClassMasterOptions();
                 }
             }
             else
@@ -127,6 +136,7 @@ namespace E_LearningApp.ViewModels
             {
                 ClassesManagerBLL.DeleteClass(SelectedItem);
                 UpdateClassesList();
+                UpdateClassMasterOptions();
             }
         }
 

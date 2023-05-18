@@ -79,7 +79,7 @@
                 </Button.Resources>
             </Button>
 
-            <Border Width="450" Height="150" Margin="0,45,0,0" BorderThickness="2">
+            <Border Width="600" Height="150" Margin="0,45,0,0" BorderThickness="2">
                 <DataGrid ItemsSource="{Binding ProfessorSubjectsList}" ColumnWidth="*" HeadersVisibility="Column" CanUserAddRows="False" SelectionMode="Single" AutoGenerateColumns="False"
                                       SelectedItem="{Binding SelectedProfessorSubject}" IsReadOnly="True">
                     <DataGrid.Columns>

@@ -62,6 +62,5 @@ namespace E_LearningApp.Models.BusinessLogicLayer
                 UnitOfWork.SaveChanges();
             }
         }
-
     }
 }

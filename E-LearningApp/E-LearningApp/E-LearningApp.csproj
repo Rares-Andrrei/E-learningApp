@@ -231,11 +231,13 @@
     <Compile Include="Models\BusinessLogicLayer\SubjectsManagerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UsersManagerBLL.cs" />
     <Compile Include="Models\DataAccessLayer\ClassesDL.cs" />
+    <Compile Include="Models\DataAccessLayer\PersonDL.cs" />
     <Compile Include="Models\DataAccessLayer\ProfessorsDL.cs" />
     <Compile Include="Models\DataAccessLayer\ProfessorSubjectAssociationDL.cs" />
     <Compile Include="Models\DataAccessLayer\StudentsDL.cs" />
     <Compile Include="Models\DataAccessLayer\SubjectClassCategoryAssociationDL.cs" />
     <Compile Include="Models\DataAccessLayer\SubjectsDL.cs" />
+    <Compile Include="Models\DataAccessLayer\UserDL.cs" />
     <Compile Include="Models\Dtos\ClassCategorySubjectsDto.cs" />
     <Compile Include="Models\Dtos\ClassDto.cs" />
     <Compile Include="Models\Dtos\DisplayBooleanDto.cs" />

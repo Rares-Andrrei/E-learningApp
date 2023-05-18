@@ -23,7 +23,8 @@ namespace E_LearningApp.Models.BusinessLogicLayer
         }
         public List<EntityFullNameIdDto> GetClassMasters()
         {
-            return UnitOfWork.Professors.GetAllAndRelations().Where(p => p.User.Role == Enums.UserRole.ClassMaster).Select(p => new EntityFullNameIdDto { FullName = p.PersonalData.FirstName + " " + p.PersonalData.LastName, Id = p.Id }).ToList();
+            var UsedClassMasters = UnitOfWork.Classes.GetClassMastersUsed();
+            return UnitOfWork.Professors.GetAllAndRelations().Where(p => p.User.Role == Enums.UserRole.ClassMaster && !UsedClassMasters.Contains(p.Id)).Select(p => new EntityFullNameIdDto { FullName = p.PersonalData.FirstName + " " + p.PersonalData.LastName, Id = p.Id }).ToList();
         }
         public bool AddClass(Class _class)
         {
