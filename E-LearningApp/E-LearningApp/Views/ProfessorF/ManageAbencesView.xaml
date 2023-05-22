@@ -3,11 +3,197 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:E_LearningApp.Views.ProfessorF"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             xmlns:local="clr-namespace:E_LearningApp.Views.ProfessorF" xmlns:professorf="clr-namespace:E_LearningApp.ViewModels.ProfessorF"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900"
+             d:DataContext="{d:DesignInstance Type=professorf:ManageAbsencesVM}">
+
+    <UserControl.Resources>
+        <Style x:Key="CommonTextStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CommonBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style x:Key="RoundedBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="24"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <StackPanel>
+
+            <TextBlock Text="Select a class:" Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center"/>
+
+            <ComboBox ItemsSource="{Binding ClassOptions}" SelectedItem="{Binding SelectedClass}" Width="100" Height="30">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding  Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Select a Subejct:" Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center"/>
+
+
+            <ComboBox ItemsSource="{Binding SubjectOptions}" SelectedItem="{Binding SelectedSubject, Mode=TwoWay}" Width="100" Height="30">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding  Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
+
+
+                <TextBlock Text="Student: " Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center"/>
+
+                <ComboBox ItemsSource="{Binding StudentsOptions}" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}" Width="150" Height="30">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding  FullName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Semester: " Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center" Margin="20,0,0,0"/>
+
+                <ComboBox ItemsSource="{Binding SemesterOptions}" SelectedItem="{Binding SelectedSemester, Mode=TwoWay}" Width="50" Height="30">
+                </ComboBox>
+
+                <TextBlock Text="Date: " Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center" Margin="20,0,0,0"/>
+
+                <DatePicker  VerticalAlignment="Center" SelectedDate="{Binding Date, Mode=TwoWay}"/>
+
+                <Button Content="Add" Style="{StaticResource ButtonStyle}" Width="70" Margin="20,0,0,0" Command="{Binding AddAbsenceCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+
             
+            <TextBlock Text="Absences Table:" Style="{StaticResource CommonTextStyle}" HorizontalAlignment="Center" Margin="0,60,0,15"/>
+
+            <ListBox Width="300" Height="200" ItemsSource="{Binding StudentsAndAbsences}" HorizontalAlignment="Center">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Center" Margin="0,10,0,5">
+
+                            <TextBlock FontWeight="Bold" HorizontalAlignment="Center">
+                                <Run Text="Student: " />
+                                <Run Text="{Binding StudentName}" />
+                            </TextBlock>
+
+                            <StackPanel Orientation="Horizontal" Margin="10">
+
+                                <StackPanel Margin="0,0,60,0">
+
+                                    <TextBlock FontWeight="Bold" Margin="5">
+                                                    <Run Text="Semester 1" />
+                                    </TextBlock>
+                                    <ListBox ItemsSource="{Binding FirstSemesterAbsences}">
+
+                                        <ListBox.SelectedItem>
+                                            <Binding Path="DataContext.SelectedAbsence"
+                                                    RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ListBox}, AncestorLevel=1}" />
+                                        </ListBox.SelectedItem>
+
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Reasoned}" Value="False">
+                                                                    <Setter Property="Foreground" Value="Red" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Reasoned}" Value="True">
+                                                                    <Setter Property="Foreground" Value="Green" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        
+                                    </ListBox>
+
+                                </StackPanel>
+
+                                <StackPanel>
+
+                                    <TextBlock FontWeight="Bold" Margin="5">
+                                                         <Run Text="Semester 2" />
+                                    </TextBlock>
+                                    <ListBox ItemsSource="{Binding SecondSemesterAbsences}">
+                                        
+                                        <ListBox.SelectedItem>
+                                            <Binding Path="DataContext.SelectedAbsence"
+                                                    RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ListBox}, AncestorLevel=1}" />
+                                        </ListBox.SelectedItem>
+                                        
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Reasoned}" Value="False">
+                                                                    <Setter Property="Foreground" Value="Red" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Reasoned}" Value="True">
+                                                                    <Setter Property="Foreground" Value="Green" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        
+                                    </ListBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Content="Motivate" Style="{StaticResource ButtonStyle}" Width="70" Margin="0,15,0,0" Command="{Binding MotivateAbsenceCommand}" IsEnabled="{Binding ButtonsEnabled}">
+                <Button.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                </Button.Resources>
+            </Button>
+
+
+            <Button Content="Delete" Style="{StaticResource ButtonStyle}" Width="70" Margin="0,15,0,0" Command="{Binding DeleteAbsenceCommand}" IsEnabled="{Binding ButtonsEnabled}">
+                <Button.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                </Button.Resources>
+            </Button>
+
+        </StackPanel>
+
+
+
     </Grid>
     
 </UserControl>

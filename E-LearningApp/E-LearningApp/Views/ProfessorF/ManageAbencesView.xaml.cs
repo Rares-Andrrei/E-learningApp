@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_LearningApp.ViewModels.ProfessorF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace E_LearningApp.Views.ProfessorF
     /// </summary>
     public partial class ManageAbencesView : UserControl
     {
-        public ManageAbencesView()
+        public ManageAbencesView(ManageAbsencesVM manageAbsencesVM)
         {
             InitializeComponent();
+            DataContext = manageAbsencesVM;
         }
     }
 }

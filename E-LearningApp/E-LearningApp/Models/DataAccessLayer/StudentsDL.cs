@@ -47,5 +47,9 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             return GetRecords().Where(r => r.Id == id).Include(r => r.PersonalData).Include(r => r.User).FirstOrDefault();
         }
+        public List<Student> GetAllWithPersonalData()
+        {
+            return GetRecords().Include(r => r.PersonalData).ToList();
+        }
     }
 }

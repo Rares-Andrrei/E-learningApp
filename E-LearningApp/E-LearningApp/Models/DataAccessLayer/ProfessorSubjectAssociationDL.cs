@@ -48,11 +48,19 @@ namespace E_LearningApp.Models.DataAccessLayer
         }
         public List<int> GetAllIdsByProfessor(int professorId)
         {
-            return GetRecords().Where(r => r.ProfessorId == professorId).Select(r=>r.ClassId).ToList();
+            return GetRecords().Where(r => r.ProfessorId == professorId).GroupBy(r => r.ClassId).Select(r=>r.FirstOrDefault().ClassId).ToList();
         }
         public List<Subject> GetSubjectsProfessorClass(int professorId, int classId)
         {
             return GetRecords().Include(r=>r.Subject).Where(r => r.ProfessorId == professorId && r.ClassId == classId).Select(r => r.Subject).ToList();
+        }
+        public List<Class> GetClassesForProfessor(int professorId)
+        {
+            return GetRecords().Include(r => r.Class).Where(r => r.ProfessorId == professorId).GroupBy(r=>r.ClassId).Select(g => g.FirstOrDefault().Class).ToList();
+        }
+        public List<ProfessorSubjectAssociation> GetAllAndSubejcts()
+        {
+            return GetRecords().Include(r => r.Subject).ToList();
         }
     }
 }

@@ -265,6 +265,7 @@
     <Compile Include="Models\Dtos\ProfessorClassGradesDto.cs" />
     <Compile Include="Models\Dtos\ProfessorSubjectDto.cs" />
     <Compile Include="Models\Dtos\RoleDto.cs" />
+    <Compile Include="Models\Dtos\StudentAbsencesDto.cs" />
     <Compile Include="Models\Dtos\StudentFullNameClassDto.cs" />
     <Compile Include="Models\Dtos\StudentSubjectGradesDto.cs" />
     <Compile Include="Models\Dtos\StudentSubjectGradesDto2.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Models\Dtos\UserDisplayDto.cs" />
     <Compile Include="ViewModels\Administrator\ClassesManagerVM.cs" />
     <Compile Include="ViewModels\Administrator\ProfessorSubjectManagerVM.cs" />
+    <Compile Include="ViewModels\ProfessorF\ManageAbsencesVM.cs" />
     <Compile Include="ViewModels\ProfessorF\ManageGradesVM.cs" />
     <Compile Include="ViewModels\ProfessorF\ProfessorVM.cs" />
     <Compile Include="ViewModels\StudentF\StudentAbsencesVM.cs" />

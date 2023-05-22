@@ -21,7 +21,7 @@ namespace E_LearningApp.Models.BusinessLogicLayer
         public List<Specialization> GetSpecializations()
         {
 
-            return UnitOfWork.Specializations.GetAll();
+            return UnitOfWork.Specializations.GetAllProcedure();
         }
         public Specialization GetSpecializationByName(string specializationName)
         {

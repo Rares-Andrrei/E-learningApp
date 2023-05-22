@@ -113,7 +113,7 @@
                                 <Run Text=", Class: " />
                                 <Run Text="{Binding ClassName}" />
                                 </TextBlock>
-                                <ListBox ItemsSource="{Binding Grades}" Height="330">
+                                <ListBox ItemsSource="{Binding Grades}" Height="328">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
 

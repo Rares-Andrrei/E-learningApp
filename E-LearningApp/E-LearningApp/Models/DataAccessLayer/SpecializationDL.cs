@@ -30,5 +30,9 @@ namespace E_LearningApp.Models.DataAccessLayer
                 Update(specialization);
             }
         }
+        public List<Specialization> GetAllProcedure()
+        {
+            return dbContext.GetSpecializations();
+        }
     }
 }

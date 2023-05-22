@@ -56,6 +56,7 @@ namespace E_LearningApp.ViewModels.ProfessorF
         }
         public void ShowManageAbsences(object parameter)
         {
+            CurrentView = new ManageAbencesView(new ManageAbsencesVM(ProfessorId));
         }
 
         private ICommand _showManageGradesCommand;
