@@ -1,5 +1,8 @@
 ﻿using E_LearningApp.Models.EntityLayer;
+using E_LearningApp.ViewModels.ProfessorF;
 using E_LearningApp.Views;
+using E_LearningApp.Views.ClassMasterF;
+using E_LearningApp.Views.ProfessorF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +36,18 @@ namespace E_LearningApp.ViewModels
         public void ShowLogInView()
         {
             CurrentView = new LoginView();
+        }
+        public void ShowClassMasterView(int userId)
+        {
+            CurrentView = new ClassMasterView();
+        }
+        public void ShowProfessorView(int userId)
+        {
+            CurrentView = new ProfessorView(new ProfessorVM(userId));
+        }
+        public void ShowClassMasterOptions(LoginVM loginVM)
+        {
+            CurrentView = new ClassmasterOptionsView(loginVM);
         }
     }
 }

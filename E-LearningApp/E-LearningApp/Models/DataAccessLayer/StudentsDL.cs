@@ -35,5 +35,17 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             return GetRecords().Where(r => r.UserId == userId).Select(r=> r.Id).FirstOrDefault();
         }
+        public List<EntityFullNameIdDto> GetStudentsFromClass(int classId)
+        {
+            return GetRecords().Include(r=>r.PersonalData).Where(r => r.ClassId == classId).Select(r=> new EntityFullNameIdDto { Id = r.Id, FullName = r.PersonalData.FirstName + " " + r.PersonalData.LastName}).ToList();
+        }
+        public List<StudentFullNameClassDto> GetStudentsFromClass2(int classId)
+        {
+            return GetRecords().Include(r => r.PersonalData).Where(r => r.ClassId == classId).Select(r=> new StudentFullNameClassDto { Id = r.Id, ClassId = r.ClassId, FullName = r.PersonalData.FirstName + " " + r.PersonalData.LastName }).ToList();
+        }
+        public Student GetStudent(int id)
+        {
+            return GetRecords().Where(r => r.Id == id).Include(r => r.PersonalData).Include(r => r.User).FirstOrDefault();
+        }
     }
 }

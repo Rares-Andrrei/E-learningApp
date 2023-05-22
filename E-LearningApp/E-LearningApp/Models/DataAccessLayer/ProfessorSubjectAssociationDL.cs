@@ -42,5 +42,17 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             return Any(r => r.ProfessorId == professorSubjectAssociation.Professor.Id && r.SubjectId == professorSubjectAssociation.Subject.Id && r.ClassId == professorSubjectAssociation.Class.Id);
         }
+        public List<ProfessorSubjectAssociation> GetAllByProfessor(int professorId)
+        {
+            return GetRecords().Include(r=>r.Subject).Include(r=>r.Class).Where(r => r.ProfessorId == professorId).ToList();
+        }
+        public List<int> GetAllIdsByProfessor(int professorId)
+        {
+            return GetRecords().Where(r => r.ProfessorId == professorId).Select(r=>r.ClassId).ToList();
+        }
+        public List<Subject> GetSubjectsProfessorClass(int professorId, int classId)
+        {
+            return GetRecords().Include(r=>r.Subject).Where(r => r.ProfessorId == professorId && r.ClassId == classId).Select(r => r.Subject).ToList();
+        }
     }
 }

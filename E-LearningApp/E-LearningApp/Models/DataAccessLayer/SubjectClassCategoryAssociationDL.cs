@@ -25,5 +25,14 @@ namespace E_LearningApp.Models.DataAccessLayer
             return GetRecords().
                 Include(r => r.Subject).ToList();
         }
+        public bool ClassSubjectIsThesis(int subejctId, string yearOfStudy, int specializationId)
+        {
+            var item = GetRecords().Where(r => r.SubjectId == subejctId && r.SpecializationId == specializationId && r.YearOfStudy == yearOfStudy).FirstOrDefault();
+            if (item != null)
+            {
+                return item.Thesis;
+            }
+            throw new Exception("Item not found");
+        }
     }
 }

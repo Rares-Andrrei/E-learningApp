@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace E_LearningApp.Models.Dtos
 {
-    public class GradeDto
+    public class StudentFullNameClassDto
     {
         public int Id { get; set; }
-        public int Grade { get; set; }
-        public DateTime Date { get; set; }
-        public bool IsThesis { get; set; }
-    }
+        public string FullName { get; set; }
+        public int? ClassId { get; set; }      
+   }
 }

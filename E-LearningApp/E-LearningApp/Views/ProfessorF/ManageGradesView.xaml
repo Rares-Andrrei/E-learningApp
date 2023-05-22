@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="E_LearningApp.Views.ProfessorF.ManageGradesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:E_LearningApp.Views.ProfessorF" 
+             xmlns:professorf="clr-namespace:E_LearningApp.ViewModels.ProfessorF"
+             mc:Ignorable="d"
+             d:DesignHeight="740" d:DesignWidth="1100"
+             d:DataContext="{d:DesignInstance Type=professorf:ManageGradesVM}">
+
+    <UserControl.Resources>
+        <Style x:Key="CommonTextStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CommonBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style x:Key="RoundedBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="24"/>
+        </Style>
+
+    </UserControl.Resources>
+
+
+    <Grid Background="White">
+        
+        <StackPanel Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0, 0">
+
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Student: " Style="{StaticResource CommonTextStyle}"/>
+                <ComboBox ItemsSource="{Binding StudentOptions}" SelectedItem="{Binding SelectedStudent}" Width="150" Height="23">
+                    <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding FullName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Subject: " Style="{StaticResource CommonTextStyle}" Margin="30,0,0,0"/>
+                <ComboBox ItemsSource="{Binding SubjectOptions}" SelectedItem="{Binding SelectedSubject}" Width="100" Height="23" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Subject.Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Grade: " Style="{StaticResource CommonTextStyle}" Margin="30,0,0,0"/>
+                <ComboBox ItemsSource="{Binding GradeOptions}" SelectedItem="{Binding SelectedGrade}" Width="60" Height="23">
+                </ComboBox>
+
+                <Button Content="Add" Style="{StaticResource ButtonStyle}" Width="70" Margin="30,0,0,0" Command="{Binding AddClassCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,40">
+
+                <TextBlock Text="Semester: " Style="{StaticResource CommonTextStyle}"/>
+                <ComboBox ItemsSource="{Binding SemesterOptions}" SelectedItem="{Binding SelectedSemester}" Width="60" Height="23">
+                </ComboBox>
+
+                <TextBlock Text="Thesis grade: " Style="{StaticResource CommonTextStyle}" Margin="30,0,0,0"/>
+                <ComboBox ItemsSource="{Binding ThesisOptions}" SelectedItem="{Binding IsThesis}" Width="60" Height="23" IsEnabled="{Binding ThesisOptionsVisibility}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding  StringValue}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Date: " Style="{StaticResource CommonTextStyle}" Margin="20,0,0,0"/>
+                <DatePicker VerticalAlignment="Center" SelectedDate="{Binding Date, Mode=TwoWay}"/>
+
+            </StackPanel>
+
+
+
+            <TextBlock FontWeight="Bold" Text="Grades Table: " HorizontalAlignment="Center" Margin="0,0,0,20" FontSize="25"/>
+
+            <Border Width="auto" Height="330">
+                <ListBox ItemsSource="{Binding DisplayedGrades}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Margin" Value="0,0,0,15" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center">
+
+                                <TextBlock FontWeight="Bold" HorizontalAlignment="Center">
+                                <Run Text="Subejct: " />
+                                <Run Text="{Binding SubjectName}" />
+                                <Run Text=", Class: " />
+                                <Run Text="{Binding ClassName}" />
+                                </TextBlock>
+                                <ListBox ItemsSource="{Binding Grades}" Height="330">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <StackPanel HorizontalAlignment="Center" Margin="0,10,0,5">
+
+                                                <TextBlock FontWeight="Bold" HorizontalAlignment="Center">
+                                                <Run Text="Student: " />
+                                                <Run Text="{Binding StudentName}" />
+                                                </TextBlock>
+
+                                                <StackPanel Orientation="Horizontal" Margin="10">
+
+                                                    <StackPanel Margin="0,0,60,0">
+                                                        <TextBlock FontWeight="Bold" Margin="5">
+                                                    <Run Text="Semester 1" />
+                                                        </TextBlock>
+                                                            <ListBox ItemsSource="{Binding FirstSemesterGrades}">
+                                                                <ListBox.SelectedItem>
+                                                                    <Binding Path="DataContext.SelectedGradeFromTable"
+                                                                    RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ListBox}, AncestorLevel=2}" />
+                                                                </ListBox.SelectedItem>
+
+                                                                <ListBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Grade}">
+                                                                            <TextBlock.Style>
+                                                                                <Style TargetType="TextBlock">
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding IsThesis}" Value="True">
+                                                                                            <Setter Property="Foreground" Value="Red" />
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBlock.Style>
+                                                                        <Run Text="   |  "/>
+                                                                        <Run Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}"/>
+                                                                        </TextBlock>
+                                                                    </DataTemplate>
+                                                                </ListBox.ItemTemplate>
+                                                            </ListBox>
+                                                    </StackPanel>
+
+                                                    <StackPanel>
+                                                        <TextBlock FontWeight="Bold" Margin="5">
+                                                         <Run Text="Semester 2" />
+                                                        </TextBlock>
+                                                            <ListBox ItemsSource="{Binding SecondSemesterGrades}">
+                                                                <ListBox.SelectedItem>
+                                                                    <Binding Path="DataContext.SelectedGradeFromTable"
+                                                                    RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ListBox}, AncestorLevel=2}" />
+                                                                </ListBox.SelectedItem>
+                                                                <ListBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Grade}">
+                                                                            <TextBlock.Style>
+                                                                                <Style TargetType="TextBlock">
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding IsThesis}" Value="True">
+                                                                                            <Setter Property="Foreground" Value="Red" />
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBlock.Style>
+                                                                         <Run Text="  |  "/>
+                                                                         <Run Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}"/>
+                                                                        </TextBlock>
+                                                                    </DataTemplate>
+                                                                </ListBox.ItemTemplate>
+                                                            </ListBox>
+                                                    </StackPanel>
+                                                </StackPanel>
+
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+
+            <Button Content="Delete" Style="{StaticResource ButtonStyle}" Width="70" Margin="0,10,0,0" Command="{Binding DeleteClassCommand}" IsEnabled="{Binding EnableDelete}">
+                <Button.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}"/>
+                </Button.Resources>
+            </Button>
+            
+        </StackPanel>
+
+    </Grid>
+</UserControl>

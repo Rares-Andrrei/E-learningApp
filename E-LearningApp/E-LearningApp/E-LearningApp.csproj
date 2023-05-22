@@ -234,8 +234,13 @@
     <Compile Include="Migrations\202305182008457_updateOnAbsences.designer.cs">
       <DependentUpon>202305182008457_updateOnAbsences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305220842059_smallChange.cs" />
+    <Compile Include="Migrations\202305220842059_smallChange.designer.cs">
+      <DependentUpon>202305220842059_smallChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\BusinessLogicLayer\Administrator\ClassesManagerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\Administrator\ProfessorSubjectManagerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProfessorF\ProfessorBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StudentF\StudentAbsenceAssociationBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StudentF\StudentBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\StudentF\StudentGradesBLL.cs" />
@@ -257,14 +262,19 @@
     <Compile Include="Models\Dtos\DisplayBooleanDto.cs" />
     <Compile Include="Models\Dtos\EntityFullNameIdDto.cs" />
     <Compile Include="Models\Dtos\GradeDto.cs" />
+    <Compile Include="Models\Dtos\ProfessorClassGradesDto.cs" />
     <Compile Include="Models\Dtos\ProfessorSubjectDto.cs" />
     <Compile Include="Models\Dtos\RoleDto.cs" />
+    <Compile Include="Models\Dtos\StudentFullNameClassDto.cs" />
     <Compile Include="Models\Dtos\StudentSubjectGradesDto.cs" />
+    <Compile Include="Models\Dtos\StudentSubjectGradesDto2.cs" />
     <Compile Include="Models\Dtos\SubejctAbsenceDisplayDto.cs" />
     <Compile Include="Models\Dtos\SubjectHasThesisDto.cs" />
     <Compile Include="Models\Dtos\UserDisplayDto.cs" />
     <Compile Include="ViewModels\Administrator\ClassesManagerVM.cs" />
     <Compile Include="ViewModels\Administrator\ProfessorSubjectManagerVM.cs" />
+    <Compile Include="ViewModels\ProfessorF\ManageGradesVM.cs" />
+    <Compile Include="ViewModels\ProfessorF\ProfessorVM.cs" />
     <Compile Include="ViewModels\StudentF\StudentAbsencesVM.cs" />
     <Compile Include="ViewModels\StudentF\StudentGradesVM.cs" />
     <Compile Include="ViewModels\StudentF\StudentVM.cs" />
@@ -275,6 +285,21 @@
     </Compile>
     <Compile Include="Views\Administrator\ProfessorSubjectManagerView.xaml.cs">
       <DependentUpon>ProfessorSubjectManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassMasterF\ClassmasterOptionsView.xaml.cs">
+      <DependentUpon>ClassmasterOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassMasterF\ClassMasterView.xaml.cs">
+      <DependentUpon>ClassMasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfessorF\ManageAbencesView.xaml.cs">
+      <DependentUpon>ManageAbencesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfessorF\ManageGradesView.xaml.cs">
+      <DependentUpon>ManageGradesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfessorF\ProfessorView.xaml.cs">
+      <DependentUpon>ProfessorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StudentF\StudentAbsencesView.xaml.cs">
       <DependentUpon>StudentAbsencesView.xaml</DependentUpon>
@@ -308,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Administrator\SpecializationsManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassMasterF\ClassmasterOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -407,6 +436,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ClassMasterF\ClassMasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfessorF\ManageAbencesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfessorF\ManageGradesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfessorF\ProfessorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StudentF\StudentAbsencesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -489,6 +534,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305182008457_updateOnAbsences.resx">
       <DependentUpon>202305182008457_updateOnAbsences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305220842059_smallChange.resx">
+      <DependentUpon>202305220842059_smallChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

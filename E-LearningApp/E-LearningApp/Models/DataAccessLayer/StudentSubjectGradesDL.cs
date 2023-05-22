@@ -20,5 +20,9 @@ namespace E_LearningApp.Models.DataAccessLayer
         {
             return GetRecords().Include(r => r.Subject).Where(r => r.StudentId == studentId).ToList();
         }
+        public List<StudentGradesAssociation> GetStudentGradesForSubject(int studentId, int subjectId)
+        {
+            return GetRecords().Include(r => r.Subject).Where(r => r.StudentId == studentId && r.SubjectId==subjectId).ToList();
+        }
     }
 }

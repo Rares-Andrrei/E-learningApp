@@ -24,7 +24,19 @@ namespace E_LearningApp.ViewModels
             set { _email = value; NotifyPropertyChanged(nameof(Email)); }
         }
 
+        private string _yearOfStudy;
+        public string YearOfStudy
+        {
+            get { return _yearOfStudy; }
+            set { _yearOfStudy = value; NotifyPropertyChanged(nameof(YearOfStudy)); }
+        }
 
+        private string _specialization;
+        public string Specialization
+        {
+            get { return _specialization; }
+            set { _specialization = value; NotifyPropertyChanged(nameof(Specialization)); }
+        }
 
         public StudentBLL StudentBLL { get; set; }
         public StudentVM(int userId) 
@@ -32,6 +44,8 @@ namespace E_LearningApp.ViewModels
             StudentBLL = new StudentBLL();
             StudentId = StudentBLL.GetStudentIdByUserId(userId);
             Email = StudentBLL.GetUsersEmail(userId);
+            Specialization = StudentBLL.GetStudentSpecialization(StudentId);
+            YearOfStudy = StudentBLL.GetStudentYear(StudentId);
         }
 
         private UserControl _currentView;

@@ -4,6 +4,8 @@ using E_LearningApp.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +25,28 @@ namespace E_LearningApp.Models.BusinessLogicLayer
         public string GetUsersEmail(int userId)
         {
             return UnitOfWork.Users.GetEmailByUserId(userId);
+        }
+        public string GetStudentYear(int stuedntId)
+        {
+            var student = UnitOfWork.StudentsDL.GetById(stuedntId);
+            if (student.ClassId != null)
+            {
+                var @class = UnitOfWork.Classes.GetById(student.ClassId.Value);
+                return @class.YearOfStudy;
+            }
+            return string.Empty;
+        }
+
+        public string GetStudentSpecialization(int stuedntId)
+        {
+            var student = UnitOfWork.StudentsDL.GetById(stuedntId);
+            if (student.ClassId != null)
+            {
+                var @class = UnitOfWork.Classes.GetById(student.ClassId.Value);
+                var specializtion = UnitOfWork.Specializations.GetById(@class.SpecializationId);
+                return specializtion.Name;
+            }
+            return string.Empty;
         }
     }
 }
