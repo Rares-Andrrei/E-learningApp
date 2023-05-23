@@ -95,9 +95,10 @@ namespace E_LearningApp.ViewModels.ProfessorF
                 {
                     ThesisOptionsVisibility = true;
                 }
-                else
+                else if(value != null && !value.HasThesis)
                 {
                     ThesisOptionsVisibility = false;
+                    IsThesis = new DisplayBooleanDto { BooleanValue = false, StringValue = "false" };
                 }
             }
         }

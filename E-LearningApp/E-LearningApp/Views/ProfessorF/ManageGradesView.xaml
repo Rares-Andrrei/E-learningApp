@@ -78,7 +78,7 @@
                 </ComboBox>
 
                 <TextBlock Text="Thesis grade: " Style="{StaticResource CommonTextStyle}" Margin="30,0,0,0"/>
-                <ComboBox ItemsSource="{Binding ThesisOptions}" SelectedItem="{Binding IsThesis}" Width="60" Height="23" IsEnabled="{Binding ThesisOptionsVisibility}">
+                <ComboBox ItemsSource="{Binding ThesisOptions}" SelectedItem="{Binding IsThesis, Mode=TwoWay}" Width="60" Height="23" IsEnabled="{Binding ThesisOptionsVisibility}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding  StringValue}"/>
